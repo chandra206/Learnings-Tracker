@@ -1,0 +1,1705 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#151917">
+  <meta name="description" content="A little structure. A lot of possibility. Still is your calm space for learning goals, deadlines, and steady progress.">
+  <title>Still — Your learning space</title>
+<style>:root {
+  color-scheme: light;
+  --paper: #f8f8f3;
+  --surface: #ffffff;
+  --surface-soft: #f3f4ed;
+  --sidebar: #f1f2e9;
+  --ink: #252b25;
+  --muted: #7b8077;
+  --line: #e4e7de;
+  --line-strong: #d2d8ca;
+  --moss: #475b36;
+  --moss-deep: #303f27;
+  --moss-soft: #e9eede;
+  --accent: #d88357;
+  --accent-soft: #fbefe7;
+  --danger: #b85c4e;
+  --shadow: 0 12px 35px rgba(42, 52, 31, .055);
+  --radius: 16px;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { min-width: 320px; scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 14px/1.55 var(--font); -webkit-font-smoothing: antialiased; }
+button, input, select, textarea { font: inherit; }
+button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; color: inherit; border: 0; background: none; }
+button, a, input, select, textarea { outline-offset: 4px; }
+:focus-visible { outline: 2px solid var(--moss); }
+button:disabled { cursor: not-allowed; opacity: .5; }
+a { color: var(--moss); text-underline-offset: 3px; }
+button, a { touch-action: manipulation; }
+button { transition: background .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
+svg { display: block; flex-shrink: 0; }
+h1, h2, h3, h4, p { margin: 0; }
+button svg, .icon svg { width: 18px; height: 18px; }
+strong { font-weight: 600; }
+::selection { background: #dbe5c9; color: #293921; }
+[hidden] { display: none !important; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.file-input { display: none; }
+
+.app-shell { min-height: 100vh; }
+.sidebar { position: fixed; z-index: 30; inset: 0 auto 0 0; width: 228px; display: flex; flex-direction: column; background: var(--sidebar); border-right: 1px solid #e1e5d9; padding: 34px 19px 22px; }
+.brand { display: flex; gap: 11px; align-items: center; padding: 0 17px; margin-bottom: 52px; text-decoration: none; }
+.brand-mark { width: 32px; height: 38px; display: grid; place-items: center; color: var(--moss); }
+.brand-mark svg { width: 33px; height: 33px; }
+.brand-name { font: 500 33px/.95 Georgia, 'Times New Roman', serif; letter-spacing: -1.5px; }
+.brand-sub { display: block; color: #89907f; font: 9px/1.5 var(--font); letter-spacing: 2.3px; text-transform: uppercase; margin: 7px 0 0 2px; }
+.nav-label { color: #939887; font-size: 9px; text-transform: uppercase; font-weight: 600; letter-spacing: 1.8px; margin: 0 0 12px 17px; }
+.sidebar nav { display: grid; gap: 5px; }
+.nav-item { width: 100%; text-align: left; display: flex; align-items: center; gap: 12px; padding: 12px 16px; min-height: 45px; border-radius: 9px; font-size: 13px; font-weight: 500; color: #777f6e; position: relative; }
+.nav-item .icon { width: 19px; display: flex; align-items: center; justify-content: center; }
+.nav-item:hover { background: rgba(71,91,54,.055); color: var(--moss-deep); }
+.nav-item.active { background: #e0e7d3; color: #3c512f; font-weight: 600; }
+.nav-item.active::after { content: ''; position: absolute; right: 14px; width: 5px; height: 5px; border-radius: 50%; background: #6e8457; }
+.sidebar-note { margin: auto 5px 26px; padding: 19px 16px 18px; border: 1px solid #dce2d0; border-radius: 11px; position: relative; }
+.sidebar-note::before { content: ''; display: block; width: 21px; height: 2px; background: #a0ac86; margin-bottom: 12px; }
+.sidebar-note p { font-size: 12px; line-height: 1.75; color: #717967; }
+.sidebar-note strong { color: #516044; display: block; font-size: 12px; margin-bottom: 5px; }
+.sidebar-note small { display: block; color: #929988; font-size: 10px; margin-top: 10px; }
+.sidebar-bottom { border-top: 1px solid #dfe4d7; padding-top: 16px; margin: 0 6px; display: flex; gap: 10px; align-items: center; font-size: 12px; color: #69735e; }
+.sidebar-bottom .avatar { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; color: #66774d; font-size: 11px; background: #e0e6d5; }
+.sidebar-bottom small { display: block; color: #949b8c; font-size: 10px; }
+.main-shell { margin-left: 228px; min-height: 100vh; }
+.topbar { height: 76px; padding: 0 43px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 20px; background: rgba(255,255,255,.25); }
+.breadcrumb { display: flex; gap: 11px; align-items: center; font-size: 11px; color: #9a9f95; }
+.breadcrumb strong, .breadcrumb span:last-child { color: #666f60; font-weight: 500; }
+.breadcrumb svg { width: 14px; height: 14px; }
+.topbar-actions { display: flex; align-items: center; gap: 15px; }
+.topbar-actions .button { min-height: 34px; font-size: 11px; }
+.topbar-actions time, .topbar-date { font-size: 11px; color: var(--muted); }
+.mobile-brand { display: none; }
+.page { max-width: 1400px; padding: 35px 43px 50px; margin: 0 auto; animation: page-in .28s ease both; }
+.page-heading { display: flex; justify-content: space-between; gap: 25px; align-items: center; margin-bottom: 27px; }
+.eyebrow { font-size: 9px; letter-spacing: 1.9px; font-weight: 600; text-transform: uppercase; color: #8c957e; margin-bottom: 9px; }
+.page-heading h1 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(30px, 2.6vw, 41px); line-height: 1.22; letter-spacing: -1.4px; font-weight: 400; }
+.page-heading h1 em { color: var(--moss); font-weight: 400; }
+.page-heading p { font-size: 12px; color: var(--muted); margin-top: 10px; }
+.heading-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 40px; padding: 9px 16px; border-radius: 7px; font-size: 12px; font-weight: 500; white-space: nowrap; text-decoration: none; border: 1px solid transparent; }
+.button.primary { background: var(--moss); color: white; box-shadow: 0 2px 3px rgba(36,48,24,.04); }
+.button.primary:hover { background: var(--moss-deep); box-shadow: 0 4px 10px rgba(36,48,24,.1); }
+.button.secondary { background: var(--surface); border-color: var(--line); color: #657056; }
+.button.secondary:hover { border-color: #c0cbb2; background: #fafbf7; }
+.button.ghost { color: var(--moss); }
+.button.ghost:hover { background: var(--moss-soft); }
+.button.danger { color: var(--danger); background: #fff1ec; border-color: #f2d8cf; }
+.button.danger:hover { background: #f9e2d9; }
+.button.small { min-height: 32px; padding: 6px 11px; font-size: 11px; }
+.button svg { width: 15px; height: 15px; }
+.icon-button { display: inline-flex; justify-content: center; align-items: center; width: 31px; height: 31px; border: 1px solid transparent; color: #909888; border-radius: 7px; flex-shrink: 0; }
+.icon-button:hover { background: var(--surface-soft); color: var(--moss); }
+.icon-button svg { width: 16px; height: 16px; }
+.demo-banner { display: flex; align-items: center; gap: 10px; padding: 10px 13px; background: #eff2e7; border: 1px solid #e0e7d3; border-radius: 8px; color: #778468; font-size: 11px; margin-bottom: 22px; }
+.demo-banner > svg { width: 15px; height: 15px; }
+.demo-banner > span, .demo-banner > p { flex: 1; }
+.demo-banner button { color: #53643e; font-size: 11px; font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+.demo-banner .icon-button { text-decoration: none; width: 24px; height: 24px; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
+.stat { position: relative; border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: 19px 20px 17px; min-height: 115px; }
+.stat > label, .stat > span:first-child, .stat .stat-label { display: block; font-size: 10px; color: #858c7b; font-weight: 500; letter-spacing: .1px; }
+.stat strong { display: block; font-size: 27px; font-weight: 500; letter-spacing: -1px; line-height: 1.2; margin-top: 10px; }
+.stat strong span { color: #98a08f; font-size: 14px; margin-left: 4px; font-weight: 400; letter-spacing: 0; }
+.stat small { display: block; font-size: 9px; color: #9ca393; margin-top: 5px; }
+.stat small.positive { color: #829461; }
+.stat-icon { position: absolute; top: 17px; right: 17px; width: 29px; height: 29px; display: grid; place-items: center; color: #929f7b; background: #f4f6ee; border-radius: 8px; }
+.stat-icon svg { width: 14px; height: 14px; }
+.stat:nth-child(3) .stat-icon { color: #c7996b; background: #fcf5ec; }
+.stat:nth-child(4) .stat-icon { color: #9f9abe; background: #f5f3fa; }
+.dashboard-grid { display: grid; grid-template-columns: minmax(0, 1fr) 304px; gap: 26px; align-items: start; }
+.main-column, .side-column { min-width: 0; }
+.side-column { display: grid; gap: 20px; }
+.section-heading { display: flex; justify-content: space-between; align-items: center; gap: 15px; margin: 27px 0 16px; }
+.section-heading h2 { font-size: 15px; font-weight: 600; letter-spacing: -.2px; }
+.section-heading .subtitle, .section-heading p { font-size: 10px; color: var(--muted); margin-top: 3px; }
+.section-heading > button, .section-heading > a { font-size: 10px; color: #858e79; display: inline-flex; align-items: center; gap: 6px; }
+.section-heading > button:hover, .section-heading > a:hover { color: var(--moss); }
+.section-heading > button svg { width: 13px; height: 13px; }
+.focus-banner { overflow: hidden; position: relative; min-height: 215px; background: #35472d; color: white; border-radius: 13px; padding: 25px 28px; isolation: isolate; }
+.focus-banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(188,202,125,.055)); z-index: -1; }
+.focus-copy { position: relative; z-index: 2; max-width: 75%; }
+.focus-banner .eyebrow { color: #b0bd97; font-size: 8px; letter-spacing: 2px; display: flex; align-items: center; gap: 7px; margin-bottom: 15px; }
+.focus-banner .eyebrow::before { content: ''; display: block; width: 5px; height: 5px; border-radius: 50%; background: #c4d8a2; box-shadow: 0 0 0 3px rgba(186,211,150,.07); }
+.focus-banner h2 { font: 400 28px/1.2 Georgia, 'Times New Roman', serif; letter-spacing: -.4px; color: #f5f6e9; }
+.focus-banner p { color: #b5c1a7; font-size: 11px; line-height: 1.7; margin-top: 10px; max-width: 315px; }
+.focus-banner .button { margin-top: 20px; color: #435634; background: #f0f3e4; padding: 7px 12px; font-size: 10px; min-height: 33px; }
+.focus-banner .button:hover { background: #fff; transform: translateY(-1px); }
+.focus-meta { position: relative; z-index: 2; color: #a6b895; font-size: 9px; display: flex; align-items: center; gap: 8px; margin-top: 13px; }
+.focus-meta svg { width: 12px; height: 12px; }
+.orbital { position: absolute; width: 190px; height: 190px; top: 22px; right: -6px; border: 1px solid rgba(182,203,153,.17); border-radius: 50%; transform: rotate(-25deg); opacity: .9; }
+.orbital::before { content: ''; position: absolute; inset: 21px; border: 1px solid rgba(190,211,161,.22); border-radius: 50%; box-shadow: 0 0 0 20px rgba(180,205,146,.012), inset 0 0 40px rgba(204,231,163,.025); }
+.orbital::after { content: ''; position: absolute; width: 83px; height: 83px; top: 50%; left: 50%; transform: translate(-50%,-50%); border-radius: 50%; background: radial-gradient(circle at 31% 25%, #a9b58c, #76895a 45%, #4a623b 95%); box-shadow: 0 0 40px rgba(196,216,160,.07), 9px 15px 25px rgba(14,28,8,.3); }
+.orbital i { position: absolute; inset: 42px -8px; border: 1px solid rgba(187,211,155,.25); border-radius: 50%; transform: rotate(-30deg); }
+.orbital span { width: 9px; height: 9px; background: #c0cd98; border-radius: 50%; position: absolute; top: 19px; left: 28px; box-shadow: 0 0 0 5px rgba(201,225,162,.04); }
+.filter-row { display: flex; gap: 12px; justify-content: space-between; align-items: center; margin-bottom: 17px; }
+.tabs { display: flex; gap: 3px; align-items: center; }
+.tab { padding: 7px 11px; color: #959c8c; border-radius: 6px; font-size: 10px; }
+.tab:hover { background: var(--surface-soft); color: #5c6d4d; }
+.tab.active { background: #e9eddf; color: #64764d; font-weight: 500; }
+.tab span { margin-left: 5px; font-size: 9px; opacity: .75; }
+.filter-row select, .learning-toolbar select { border: 1px solid var(--line); border-radius: 6px; background: var(--surface); font-size: 10px; color: #868e7e; padding: 7px 26px 7px 9px; min-height: 31px; max-width: 170px; }
+.goal-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 15px; }
+.goal-grid.full { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 19px; }
+.goal-card { min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 11px; padding: 17px 18px 0; transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease; position: relative; }
+.goal-card:hover { border-color: #cdd6c0; box-shadow: 0 8px 22px rgba(63,76,42,.055); transform: translateY(-2px); }
+.card-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; min-height: 26px; margin-bottom: 10px; }
+.card-top .icon-button { width: 25px; height: 25px; color: #a1a99a; }
+.category { display: inline-flex; gap: 5px; align-items: center; color: #899376; font-size: 8px; font-weight: 500; text-transform: uppercase; letter-spacing: .7px; }
+.category-dot { width: 5px; height: 5px; background: var(--category-color, #96a57c); border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.goal-card h3 { font-size: 14px; line-height: 1.45; font-weight: 600; letter-spacing: -.18px; margin-bottom: 6px; color: #3e4935; }
+.card-open { text-align: left; width: 100%; padding: 0; }
+.card-open:hover h3 { color: #708753; }
+.card-description { color: #9a9f93; font-size: 10px; line-height: 1.65; margin-bottom: 17px; min-height: 31px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.progress-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 9px; color: #959e89; margin-bottom: 7px; }
+.progress-row strong { color: #7f916c; font-weight: 500; }
+.progress-track { height: 4px; background: #eff2e9; border-radius: 5px; overflow: hidden; }
+.progress-track i { display: block; height: 100%; background: var(--progress-color, #9dac84); border-radius: 5px; transition: width .35s ease; }
+.card-footer { border-top: 1px solid #edf0e8; margin-top: 19px; min-height: 45px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.deadline { display: inline-flex; gap: 5px; align-items: center; color: #909a83; font-size: 9px; }
+.deadline svg { width: 11px; height: 11px; }
+.deadline.urgent { color: #c48764; }
+.priority { font-size: 8px; padding: 3px 6px; border-radius: 4px; color: #959d8b; background: #f3f5ee; white-space: nowrap; text-transform: capitalize; }
+.priority.high { color: #bf8a6e; background: #fbf2eb; }
+.priority.medium { color: #a19361; background: #f7f5e9; }
+.priority.low { color: #82936e; background: #f0f4e8; }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; min-width: 0; }
+.panel-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 19px; }
+.panel-heading h2, .panel-heading h3 { font-size: 12px; font-weight: 600; letter-spacing: -.1px; }
+.panel-heading p, .panel-heading span { font-size: 9px; color: #9ba291; }
+.panel-heading svg { width: 15px; height: 15px; color: #9ca78d; }
+.panel-heading .button { font-size: 9px; padding: 4px 6px; min-height: 26px; }
+.upcoming-list { display: grid; }
+.upcoming-item { display: flex; align-items: center; gap: 12px; padding: 13px 0; border-bottom: 1px solid #edf0e7; width: 100%; text-align: left; }
+.upcoming-item:first-child { padding-top: 0; }
+.upcoming-item:last-child { padding-bottom: 0; border-bottom: 0; }
+.upcoming-item:hover .upcoming-body strong { color: #7e9360; }
+.date-block { width: 36px; min-width: 36px; min-height: 42px; border-radius: 7px; background: #f4f5ee; color: #859471; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 8px; line-height: 1.4; text-transform: uppercase; }
+.date-block strong { font-size: 15px; font-weight: 500; }
+.date-block.urgent { background: #fbf2e9; color: #c69870; }
+.upcoming-body { min-width: 0; flex: 1; }
+.upcoming-body strong { display: block; color: #606d53; font-size: 10px; font-weight: 500; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.upcoming-body small { display: block; color: #a1a998; font-size: 8px; margin-top: 4px; }
+.upcoming-item > svg { width: 12px; height: 12px; color: #aeb6a4; }
+.empty-small { padding: 15px 2px; color: #929b87; font-size: 11px; line-height: 1.8; }
+.timer-panel { text-align: center; }
+.timer-panel .panel-heading { text-align: left; margin-bottom: 16px; }
+.timer-options { display: flex; align-items: center; justify-content: center; gap: 5px; padding: 3px; background: #f4f6ee; border-radius: 6px; margin: 0 auto 20px; }
+.chip { color: #9ba490; font-size: 8px; padding: 6px 8px; border-radius: 4px; flex: 1; white-space: nowrap; }
+.chip.active { background: #fff; color: #75875b; box-shadow: 0 1px 4px rgba(74,92,43,.08); }
+.chip:hover { color: var(--moss); }
+.timer-display { color: #485a37; font-size: 45px; letter-spacing: -2px; font-weight: 300; line-height: 1.15; font-variant-numeric: tabular-nums; margin-bottom: 7px; }
+.timer-panel > p, .timer-hint { color: #a1aa96; font-size: 9px; margin-bottom: 19px; }
+.timer-panel select { width: 100%; color: #8e9a7f; font-size: 9px; border: 1px solid #e5eadc; border-radius: 6px; background: #fafbf7; padding: 8px; margin-bottom: 12px; }
+.timer-buttons { display: flex; gap: 7px; }
+.timer-buttons .button { flex: 1; font-size: 10px; min-height: 33px; padding: 7px 9px; }
+.timer-buttons .icon-button { border: 1px solid var(--line); height: 33px; width: 33px; }
+.weekly-dots { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.day-dot { display: flex; flex-direction: column; gap: 9px; align-items: center; color: #a0a993; font-size: 8px; }
+.day-dot > span:first-child, .day-dot > i, .day-dot .dot { width: 23px; height: 23px; display: grid; place-items: center; border-radius: 50%; background: #f0f3e9; color: #c0c9b1; font-style: normal; }
+.day-dot.done > span:first-child, .day-dot.done > i, .day-dot.done .dot, .day-dot .done { color: #f5f8ed; background: #9caf80; }
+.day-dot.today > span:first-child, .day-dot.today > i, .day-dot.today .dot { box-shadow: 0 0 0 3px #edf1e3; border: 1px solid #aaba90; }
+.day-dot svg { width: 11px; height: 11px; }
+.quote-note { padding: 8px 16px 4px; text-align: center; }
+.quote-note p, .quote-note blockquote { font: italic 15px/1.7 Georgia, 'Times New Roman', serif; color: #959e85; margin: 0; }
+.quote-note small { display: block; color: #b3b9aa; font-size: 8px; margin-top: 8px; letter-spacing: 1px; text-transform: uppercase; }
+
+.learning-toolbar { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin: 0 0 24px; }
+.search-field { display: flex; align-items: center; gap: 9px; min-width: 180px; max-width: 380px; flex: 1; background: var(--surface); border: 1px solid var(--line); border-radius: 7px; padding: 9px 12px; }
+.search-field svg { width: 15px; height: 15px; color: #9aa58b; }
+.search-field input { outline: 0; border: 0; background: transparent; width: 100%; min-width: 0; color: var(--ink); font-size: 11px; }
+.search-field:focus-within { border-color: #a9b995; box-shadow: 0 0 0 3px rgba(154,174,123,.08); }
+.search-field input::placeholder { color: #a5ac9b; }
+.learning-toolbar .filters { display: flex; gap: 9px; align-items: center; }
+.view-switch { display: flex; padding: 3px; border: 1px solid var(--line); background: var(--surface); border-radius: 6px; gap: 2px; }
+.view-switch button { padding: 6px; color: #a0aa94; border-radius: 3px; }
+.view-switch button.active { background: #eaf0df; color: #68804e; }
+.view-switch svg { width: 14px; height: 14px; }
+.list-view { display: grid; gap: 10px; }
+.list-row { display: flex; align-items: center; gap: 22px; text-align: left; width: 100%; padding: 19px 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+.list-row:hover { border-color: #bfcdaa; box-shadow: var(--shadow); }
+.list-row > div:first-child { flex: 1; min-width: 0; }
+.list-row h3 { font-size: 13px; font-weight: 500; margin: 5px 0 0; }
+.list-row .list-progress { width: 140px; }
+.list-row .deadline { min-width: 85px; }
+.empty-state { text-align: center; border: 1px dashed #d5dfc8; background: rgba(255,255,255,.45); border-radius: 13px; padding: 64px 30px; grid-column: 1 / -1; }
+.empty-state > svg { margin: 0 auto 18px; width: 34px; height: 34px; color: #99ab81; }
+.empty-state h2, .empty-state h3 { font: 400 24px/1.3 Georgia, 'Times New Roman', serif; margin-bottom: 9px; }
+.empty-state p { max-width: 350px; color: #8b957e; margin: 0 auto 22px; font-size: 12px; }
+
+.calendar-layout { display: grid; grid-template-columns: minmax(0,1fr) 280px; gap: 23px; align-items: start; }
+.calendar-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 13px; padding: 23px; }
+.calendar-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding-bottom: 22px; }
+.calendar-toolbar h2 { font: 400 24px/1.25 Georgia, 'Times New Roman', serif; letter-spacing: -.4px; }
+.calendar-toolbar > div { display: flex; align-items: center; gap: 5px; }
+.calendar-toolbar .icon-button { border: 1px solid var(--line); }
+.calendar-weekdays { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); color: #a0a995; font-size: 9px; text-align: center; padding-bottom: 13px; text-transform: uppercase; letter-spacing: .5px; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); border: 1px solid var(--line); border-radius: 7px; overflow: hidden; }
+.calendar-day { min-width: 0; min-height: 99px; padding: 8px 5px; background: var(--surface); border-right: 1px solid #edf0e7; border-bottom: 1px solid #edf0e7; text-align: left; transition: background .2s; }
+.calendar-day:nth-child(7n) { border-right: 0; }
+.calendar-day:nth-last-child(-n+7) { border-bottom: 0; }
+.calendar-day:hover { background: #fafbf6; }
+.calendar-day.outside { background: #fafbf7; }
+.calendar-day.outside .day-number { color: #ccd2c3; }
+.day-number { display: inline-flex; width: 24px; height: 24px; justify-content: center; align-items: center; font-size: 10px; color: #87957a; margin-bottom: 5px; border-radius: 50%; }
+.calendar-day.today .day-number { background: var(--moss); color: white; }
+.calendar-day.selected { background: #f1f5e9; box-shadow: inset 0 0 0 1px #bccba7; }
+.calendar-event { display: block; font-size: 8px; line-height: 1.5; text-align: left; padding: 3px 4px; margin-bottom: 3px; background: #edf2e2; border-radius: 3px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #7b8d63; }
+.calendar-event.deadline-event { background: #fbf0e6; color: #bc926c; }
+.calendar-event.planned-event { background: #edf2e2; color: #7b8d63; }
+.calendar-legend { display: flex; gap: 18px; margin-top: 17px; color: #97a08c; font-size: 9px; }
+.calendar-legend span { display: flex; align-items: center; gap: 6px; }
+.calendar-legend i { width: 7px; height: 7px; display: inline-block; border-radius: 2px; background: #a7b891; }
+.calendar-legend span:first-child i { background: #d5ad89; }
+.calendar-aside { display: grid; gap: 18px; }
+.calendar-aside h3 { font-size: 12px; font-weight: 500; }
+.calendar-aside p { color: #929d85; font-size: 11px; }
+
+.insights-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 23px; }
+.insights-grid .panel { padding: 25px; }
+.insights-grid .panel.wide { grid-column: 1 / -1; }
+.insights-grid .panel-heading { margin-bottom: 26px; }
+.insights-grid .panel-heading h2 { font-size: 13px; }
+.bar-chart { height: 180px; display: flex; align-items: stretch; gap: 18px; padding: 15px 10px 0; background: repeating-linear-gradient(to top, transparent 0, transparent 44px, #f0f3e9 44px, #f0f3e9 45px); }
+.bar-column { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 10px; flex: 1; }
+.bar-column .bar { width: 100%; max-width: 44px; background: #b7c4a2; border-radius: 4px 4px 0 0; min-height: 3px; position: relative; transition: height .4s ease; }
+.bar-column .bar:hover { background: #809862; }
+.bar-column .bar:hover::after { content: attr(data-value); position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 9px; padding: 3px 6px; border-radius: 4px; background: var(--moss); color: white; }
+.bar-column > span, .bar-column > small { font-size: 9px; color: #9aa58d; background: var(--surface); width: 100%; text-align: center; }
+.heatmap { display: grid; grid-template-columns: repeat(13,1fr); gap: 5px; max-width: 670px; }
+.heat-cell { aspect-ratio: 1; border-radius: 3px; background: #f0f3e9; max-height: 22px; }
+.heat-cell.level-1 { background: #dce5cd; }
+.heat-cell.level-2 { background: #b5c799; }
+.heat-cell.level-3 { background: #8ca666; }
+.heat-cell.level-4 { background: #5e7c42; }
+.category-breakdown { display: grid; gap: 20px; }
+.category-row { display: grid; grid-template-columns: 1fr auto; gap: 8px 15px; align-items: center; font-size: 11px; color: #849274; }
+.category-row .progress-track { grid-column: 1 / -1; }
+.category-row > strong { font-size: 10px; color: #a1ad93; }
+.insight-number { font-size: 36px; font-weight: 400; letter-spacing: -1.2px; color: var(--moss); }
+.insight-note { font-size: 11px; color: #95a087; margin-top: 10px; }
+
+.settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 23px; align-items: start; }
+.settings-grid .panel { padding: 26px; }
+.settings-grid .panel-heading { margin-bottom: 24px; }
+.settings-grid h2 { font-size: 14px; font-weight: 500; }
+.settings-grid p { color: #909a84; font-size: 11px; line-height: 1.7; margin: 8px 0 18px; }
+.settings-grid .button + .button { margin-left: 5px; }
+.settings-grid .danger-zone { border-color: #eeded5; }
+.settings-row { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.settings-row:last-child { border: 0; }
+.settings-row label { font-size: 12px; color: #6d7e5b; }
+.settings-row small { display: block; font-size: 10px; color: #a0a994; margin-top: 4px; }
+.field { display: grid; gap: 7px; margin-bottom: 17px; min-width: 0; }
+.field label { font-size: 11px; font-weight: 500; color: #728361; }
+.field label span { font-weight: 400; color: #a6af9b; }
+.field input, .field select, .field textarea, .step-add input, .note-area { width: 100%; min-width: 0; border: 1px solid #dfe5d6; border-radius: 7px; background: var(--surface); color: var(--ink); padding: 10px 12px; font-size: 12px; transition: border-color .18s, box-shadow .18s; }
+.field input, .field select { min-height: 41px; }
+.field input:focus, .field select:focus, .field textarea:focus, .step-add input:focus, .note-area:focus { outline: none; border-color: #9faf89; box-shadow: 0 0 0 3px rgba(145,168,113,.09); }
+.field input::placeholder, .field textarea::placeholder, .step-add input::placeholder, .note-area::placeholder { color: #b0b8a7; }
+.field textarea { resize: vertical; min-height: 85px; }
+.field input:user-invalid, .field select:user-invalid { border-color: #d19880; background: #fffaf7; }
+.field small { color: #9aa68d; font-size: 10px; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+input[type='checkbox'] { width: 15px; height: 15px; accent-color: var(--moss); cursor: pointer; }
+input[type='range'] { accent-color: var(--moss); }
+
+dialog.modal { width: calc(100% - 38px); max-width: 610px; border: 1px solid #e2e7d8; border-radius: 16px; padding: 0; background: var(--surface); color: var(--ink); box-shadow: 0 25px 100px rgba(32,46,20,.2); max-height: calc(100dvh - 60px); overflow: auto; }
+dialog.modal[open] { animation: modal-in .22s ease both; }
+dialog.modal::backdrop { background: rgba(43,51,35,.34); backdrop-filter: blur(4px); }
+.modal-header { display: flex; gap: 15px; justify-content: space-between; align-items: start; padding: 25px 27px 21px; border-bottom: 1px solid var(--line); }
+.modal-header h2 { font: 400 27px/1.2 Georgia, 'Times New Roman', serif; letter-spacing: -.6px; }
+.modal-header p { color: #929e84; font-size: 11px; margin-top: 8px; }
+.modal-header .icon-button { margin: -4px -6px 0 0; }
+.modal-body { padding: 24px 27px 9px; }
+.modal-footer { padding: 18px 27px; display: flex; justify-content: flex-end; align-items: center; gap: 8px; border-top: 1px solid var(--line); background: #fafbf7; border-radius: 0 0 16px 16px; }
+.modal-footer .button { min-width: 88px; }
+.modal-footer .button.danger { margin-right: auto; }
+.modal-footer .modal-footer-note { margin-right: auto; color: #a3ad97; font-size: 10px; }
+dialog.detail-modal { max-width: 720px; }
+.detail-modal .modal-header { padding-bottom: 23px; }
+.detail-modal .modal-header h2 { margin-top: 10px; }
+.detail-meta { display: flex; gap: 14px; flex-wrap: wrap; margin: 15px 0 19px; font-size: 10px; color: #8b9a7c; }
+.detail-meta > span { display: flex; gap: 5px; align-items: center; }
+.detail-meta svg { width: 13px; height: 13px; }
+.detail-progress { margin-bottom: 25px; }
+.detail-progress .progress-track { height: 6px; }
+.detail-tabs { display: flex; gap: 20px; border-bottom: 1px solid var(--line); margin-bottom: 23px; }
+.detail-tabs button { padding: 10px 1px; border-bottom: 2px solid transparent; font-size: 11px; color: #a0ac92; }
+.detail-tabs button.active { color: #6d8454; border-bottom-color: #889d6b; }
+.detail-section { margin-bottom: 23px; }
+.detail-section > h3 { font-size: 12px; color: #718161; font-weight: 500; margin-bottom: 13px; }
+.detail-section > p { color: #919d84; font-size: 12px; line-height: 1.8; }
+.checklist { display: grid; gap: 8px; }
+.check-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: #f8faf4; border: 1px solid #e9eddf; border-radius: 7px; }
+.check-item label { flex: 1; font-size: 11px; color: #7d8b6e; cursor: pointer; overflow-wrap: anywhere; }
+.check-item.checked label { color: #a7b29a; text-decoration: line-through; }
+.check-item input { margin: 0; flex-shrink: 0; }
+.check-item .icon-button { width: 24px; height: 24px; opacity: .5; }
+.check-item:hover .icon-button, .check-item .icon-button:focus-visible { opacity: 1; }
+.step-add { display: flex; align-items: center; gap: 8px; margin-top: 11px; }
+.step-add input { min-height: 36px; padding: 8px 11px; font-size: 11px; }
+.step-add .button { min-height: 36px; font-size: 10px; }
+.resource-list { display: grid; gap: 8px; margin-bottom: 16px; }
+.resource-item { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); background: #fafbf7; padding: 12px; border-radius: 7px; }
+.resource-item > svg { width: 16px; height: 16px; color: #a1b08d; }
+.resource-item a { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; text-decoration: none; color: #7a8f64; }
+.resource-item a:hover { text-decoration: underline; }
+.note-area { min-height: 180px; resize: vertical; line-height: 1.8; }
+.status-pill { display: inline-flex; padding: 4px 8px; gap: 4px; align-items: center; border-radius: 5px; font-size: 9px; color: #8ea072; background: #eef3e3; text-transform: capitalize; }
+.status-pill.completed { color: #718e55; background: #e9f0de; }
+.status-pill.paused { color: #a39469; background: #f5f1e5; }
+.status-pill.planned { color: #9692ad; background: #f0eef6; }
+.status-pill.overdue { color: #bf8d6e; background: #fbefe4; }
+.save-indicator { display: inline-flex; align-items: center; gap: 5px; color: #a2ae95; font-size: 9px; }
+.save-indicator svg { width: 11px; height: 11px; }
+.toast-container { position: fixed; z-index: 100; right: 28px; bottom: 25px; display: grid; gap: 8px; max-width: min(380px, calc(100% - 40px)); }
+.toast { display: flex; align-items: center; gap: 10px; border: 1px solid #d7e0c9; background: #fafcf6; color: #657d4d; padding: 13px 15px; border-radius: 10px; box-shadow: 0 7px 30px rgba(46,66,28,.1); font-size: 12px; animation: toast-in .25s ease both; }
+.toast > svg { width: 17px; height: 17px; }
+.toast > span { flex: 1; }
+.toast button { width: 23px; height: 23px; margin-left: 10px; color: #9ead8e; display: grid; place-items: center; }
+.toast button svg { width: 13px; height: 13px; }
+.toast.error { color: #ab7356; background: #fff9f5; border-color: #ead4c6; }
+
+@keyframes page-in { from { opacity: .3; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes modal-in { from { opacity: 0; transform: translateY(10px) scale(.99); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes toast-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (min-width: 1550px) {
+  .page { padding-top: 44px; }
+  .dashboard-grid { grid-template-columns: minmax(0,1fr) 330px; gap: 29px; }
+  .focus-banner { min-height: 236px; padding: 29px 32px; }
+  .focus-banner h2 { font-size: 32px; }
+  .focus-banner p { max-width: 365px; font-size: 12px; }
+  .orbital { right: 24px; top: 28px; }
+  .goal-card { padding: 21px 22px 0; }
+  .goal-card h3 { font-size: 15px; }
+  .card-description { font-size: 11px; }
+  .panel { padding: 23px; }
+}
+@media (max-width: 1200px) {
+  .sidebar { width: 208px; padding-left: 15px; padding-right: 15px; }
+  .main-shell { margin-left: 208px; }
+  .topbar { padding: 0 29px; }
+  .page { padding: 30px 29px 40px; }
+  .dashboard-grid { grid-template-columns: minmax(0,1fr) 274px; gap: 20px; }
+  .stats-grid { gap: 12px; }
+  .stat { padding: 17px 16px; }
+  .stat-icon { right: 12px; }
+  .focus-banner { padding: 23px; }
+  .focus-banner h2 { font-size: 25px; }
+  .focus-copy { max-width: 83%; }
+  .orbital { right: -64px; opacity: .55; }
+  .goal-card { padding: 15px 15px 0; }
+  .goal-grid { gap: 13px; }
+  .card-footer { flex-wrap: wrap; padding: 9px 0; min-height: 45px; }
+  .calendar-layout { grid-template-columns: minmax(0,1fr) 230px; gap: 18px; }
+  .calendar-panel { padding: 18px; }
+  .calendar-day { min-height: 87px; }
+  .learning-toolbar { flex-wrap: wrap; }
+}
+@media (max-width: 1100px) {
+  .dashboard-grid { grid-template-columns: minmax(0,1fr); }
+  .side-column { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 15px; margin-top: 6px; }
+  .side-column .panel { padding: 16px; }
+  .side-column .quote-note { display: none; }
+  .side-column .timer-display { font-size: 36px; }
+  .side-column .timer-options { gap: 0; }
+  .side-column .chip { padding-left: 4px; padding-right: 4px; }
+  .weekly-dots { gap: 3px; flex-wrap: wrap; justify-content: flex-start; }
+  .day-dot { width: calc(25% - 3px); margin-bottom: 9px; }
+  .focus-copy { max-width: 70%; }
+  .focus-banner { min-height: 210px; padding: 26px; }
+  .focus-banner h2 { font-size: 29px; }
+  .orbital { right: 25px; opacity: 1; top: 15px; }
+  .goal-grid.full { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .calendar-layout { grid-template-columns: minmax(0,1fr); }
+  .calendar-aside { grid-template-columns: 1fr 1fr; }
+  .insights-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
+  .insights-grid .panel { padding: 20px; }
+  .settings-grid { grid-template-columns: 1fr; }
+  .list-row { gap: 15px; padding: 17px; }
+  .list-row .list-progress { width: 95px; }
+}
+@media (max-width: 900px) {
+  .sidebar { width: 188px; padding-left: 12px; padding-right: 12px; }
+  .main-shell { margin-left: 188px; }
+  .brand { padding-left: 11px; }
+  .nav-item { padding-left: 13px; font-size: 12px; }
+  .sidebar-note { padding: 15px 12px; margin-left: 1px; margin-right: 1px; }
+  .topbar { padding: 0 23px; height: 66px; }
+  .page { padding: 27px 23px 35px; }
+  .page-heading { align-items: flex-start; gap: 15px; }
+  .page-heading h1 { font-size: 31px; }
+  .page-heading .button { padding: 9px 11px; font-size: 10px; }
+  .stats-grid { grid-template-columns: repeat(2,1fr); }
+  .stat { min-height: 109px; }
+  .side-column { grid-template-columns: 1fr 1fr; }
+  .side-column > .panel:nth-child(3) { grid-column: 1 / -1; }
+  .weekly-dots { justify-content: space-between; }
+  .day-dot { width: auto; margin: 0; }
+  .insights-grid { grid-template-columns: 1fr; }
+  .insights-grid .panel.wide { grid-column: auto; }
+  .topbar-actions time, .topbar-date { display: none; }
+}
+@media (max-width: 760px) {
+  body { font-size: 13px; }
+  .sidebar { inset: auto 0 0; width: 100%; height: calc(64px + env(safe-area-inset-bottom)); background: rgba(251,252,247,.97); padding: 5px 9px calc(5px + env(safe-area-inset-bottom)); border-top: 1px solid #dfe5d5; border-right: 0; backdrop-filter: blur(15px); }
+  .sidebar .brand, .sidebar .nav-label, .sidebar-note, .sidebar-bottom { display: none; }
+  .sidebar nav { display: flex; height: 100%; width: 100%; gap: 3px; justify-content: space-around; }
+  .nav-item { flex: 1; width: auto; min-width: 0; flex-direction: column; justify-content: center; gap: 3px; padding: 7px 4px; text-align: center; border-radius: 8px; font-size: 9px; min-height: 0; }
+  .nav-item .icon { width: 19px; height: 19px; }
+  .nav-item .icon svg { width: 18px; height: 18px; }
+  .nav-item.active { background: #edf2e4; }
+  .nav-item.active::after { display: none; }
+  .main-shell { margin-left: 0; padding-bottom: 72px; }
+  .topbar { height: 65px; padding: 0 23px; }
+  .mobile-brand { display: flex; gap: 7px; align-items: center; font: 400 26px/1 Georgia, 'Times New Roman', serif; letter-spacing: -1px; color: #4b6038; }
+  .mobile-brand svg { width: 24px; height: 24px; }
+  .breadcrumb { display: none; }
+  .topbar-actions { gap: 10px; }
+  .topbar-actions .save-indicator { display: none; }
+  .topbar-actions .button { min-height: 31px; font-size: 10px; padding: 6px 10px; }
+  .page { padding: 28px 23px 35px; }
+  .page-heading { margin-bottom: 23px; }
+  .page-heading h1 { font-size: 35px; }
+  .page-heading p { max-width: 340px; font-size: 11px; }
+  .eyebrow { font-size: 8px; margin-bottom: 8px; }
+  .heading-actions { margin-top: 4px; }
+  .stats-grid { margin-bottom: 24px; }
+  .stat { min-height: 109px; }
+  .dashboard-grid { gap: 23px; }
+  .focus-banner { padding: 25px; }
+  .section-heading { margin-top: 26px; }
+  .goal-card { padding: 17px 18px 0; }
+  .card-description { font-size: 11px; }
+  .card-footer { min-height: 46px; }
+  .goal-grid.full { gap: 14px; }
+  .learning-toolbar { gap: 12px; }
+  .search-field { max-width: none; flex-basis: 100%; }
+  .learning-toolbar .filters { width: 100%; flex-wrap: wrap; }
+  .learning-toolbar .filters .view-switch { margin-left: auto; }
+  .list-row .list-progress { width: 90px; }
+  .list-row .deadline { display: none; }
+  .calendar-day { min-height: 91px; }
+  .insights-grid { grid-template-columns: 1fr 1fr; }
+  .insights-grid .panel.wide { grid-column: 1 / -1; }
+  .toast-container { bottom: calc(80px + env(safe-area-inset-bottom)); right: 18px; max-width: calc(100% - 36px); }
+  dialog.modal { max-height: calc(100dvh - 35px); }
+}
+@media (max-width: 560px) {
+  .page-heading { flex-wrap: wrap; gap: 17px; }
+  .page-heading h1 { font-size: 33px; }
+  .page-heading .heading-actions { margin-top: 0; }
+  .page-heading .button { font-size: 11px; padding: 8px 13px; min-height: 36px; }
+  .side-column { gap: 14px; }
+  .side-column .panel { padding: 17px; }
+  .orbital { right: -47px; opacity: .65; }
+  .focus-copy { max-width: 88%; }
+  .focus-banner h2 { font-size: 28px; }
+  .focus-banner p { max-width: 265px; }
+  .goal-grid, .goal-grid.full { grid-template-columns: 1fr; }
+  .goal-card { padding: 20px 21px 0; }
+  .goal-card h3 { font-size: 16px; }
+  .card-description { min-height: 0; margin-bottom: 20px; }
+  .card-top { margin-bottom: 10px; }
+  .card-footer { min-height: 48px; margin-top: 20px; }
+  .category { font-size: 9px; }
+  .progress-row, .deadline { font-size: 10px; }
+  .priority { font-size: 9px; }
+  .calendar-panel { padding: 15px; }
+  .calendar-toolbar h2 { font-size: 21px; }
+  .calendar-day { min-height: 79px; padding: 5px 2px; }
+  .calendar-event { font-size: 7px; padding: 2px; }
+  .calendar-aside { grid-template-columns: 1fr; }
+  .insights-grid { grid-template-columns: 1fr; }
+  .insights-grid .panel.wide { grid-column: auto; }
+  .filter-row { flex-wrap: wrap; gap: 9px; }
+  .filter-row select { margin-left: auto; }
+  .list-row { gap: 12px; padding: 16px; }
+  .list-row .priority { display: none; }
+  .list-row h3 { font-size: 12px; }
+  .list-row .list-progress { width: 75px; }
+  .field-row { gap: 12px; }
+  .modal-header { padding: 23px 21px 19px; }
+  .modal-header h2 { font-size: 25px; }
+  .modal-body { padding: 22px 21px 5px; }
+  .modal-footer { padding: 17px 21px; flex-wrap: wrap; }
+  .modal-footer .modal-footer-note { display: none; }
+  .detail-tabs { gap: 18px; }
+}
+@media (max-width: 480px) {
+  .topbar { padding: 0 19px; height: 61px; }
+  .page { padding: 25px 18px 30px; }
+  .topbar-actions .button { font-size: 9px; }
+  .page-heading h1 { font-size: 32px; }
+  .page-heading p { font-size: 11px; }
+  .stats-grid { gap: 10px; }
+  .stat { padding: 16px; min-height: 110px; }
+  .stat strong { font-size: 26px; }
+  .stat-icon { top: 14px; right: 12px; width: 25px; height: 25px; }
+  .stat > label, .stat > span:first-child, .stat .stat-label { font-size: 9px; }
+  .demo-banner { align-items: flex-start; font-size: 10px; padding: 11px; gap: 8px; }
+  .demo-banner > svg { margin-top: 2px; }
+  .demo-banner button { font-size: 10px; }
+  .focus-banner { padding: 24px 22px; min-height: 220px; }
+  .focus-banner h2 { font-size: 27px; max-width: 250px; }
+  .focus-banner p { max-width: 243px; font-size: 10px; }
+  .orbital { right: -74px; top: 18px; opacity: .52; }
+  .side-column { grid-template-columns: 1fr; }
+  .side-column > .panel:nth-child(3) { grid-column: auto; }
+  .side-column .panel { padding: 21px; }
+  .side-column .timer-display { font-size: 46px; }
+  .side-column .timer-options { max-width: 250px; }
+  .side-column .chip { font-size: 10px; padding: 6px 9px; }
+  .timer-panel select { font-size: 11px; padding: 10px; }
+  .timer-buttons .button { font-size: 11px; min-height: 38px; }
+  .timer-buttons .icon-button { height: 38px; width: 38px; }
+  .upcoming-body strong { font-size: 12px; }
+  .upcoming-body small { font-size: 10px; }
+  .date-block { width: 39px; min-width: 39px; min-height: 45px; font-size: 9px; }
+  .date-block strong { font-size: 17px; }
+  .panel-heading h2, .panel-heading h3 { font-size: 13px; }
+  .day-dot { font-size: 9px; }
+  .day-dot > span:first-child, .day-dot > i, .day-dot .dot { width: 27px; height: 27px; }
+  .tab { padding-left: 9px; padding-right: 9px; }
+  .learning-toolbar select { max-width: 138px; padding-right: 20px; }
+  .calendar-panel { padding: 12px; border-radius: 10px; }
+  .calendar-toolbar { padding-bottom: 17px; }
+  .calendar-toolbar h2 { font-size: 20px; }
+  .calendar-toolbar .button { font-size: 9px; padding: 5px 7px; }
+  .calendar-toolbar .icon-button { width: 25px; height: 28px; }
+  .calendar-day { min-height: 72px; }
+  .day-number { width: 21px; height: 21px; font-size: 9px; }
+  .calendar-weekdays { font-size: 8px; }
+  .settings-grid .panel { padding: 21px; }
+  .settings-grid .button { white-space: normal; font-size: 11px; }
+  .settings-grid .button + .button { margin-left: 0; margin-top: 8px; }
+  dialog.modal { width: calc(100% - 22px); max-height: calc(100dvh - 22px); border-radius: 13px; }
+  .modal-header { padding: 20px 19px 17px; }
+  .modal-body { padding: 20px 19px 4px; }
+  .modal-footer { padding: 15px 19px; }
+  .field input, .field select, .field textarea, .step-add input, .note-area { font-size: 16px; }
+  .field-row { grid-template-columns: 1fr; gap: 0; }
+  .detail-meta { gap: 11px; }
+  .detail-tabs { gap: 16px; }
+  .detail-tabs button { font-size: 10px; }
+  .step-add { align-items: stretch; }
+  .step-add .button { font-size: 10px; padding: 7px 10px; }
+  .empty-state { padding: 43px 22px; }
+}
+
+[data-theme='dark'] { color-scheme: dark; --paper: #1e241d; --surface: #272e25; --surface-soft: #30392a; --sidebar: #20281d; --ink: #e0e7d7; --muted: #98a48d; --line: #384331; --line-strong: #49583e; --moss: #92aa75; --moss-deep: #abc48d; --moss-soft: #35432b; --shadow: 0 12px 35px rgba(0,0,0,.1); }
+[data-theme='dark'] .sidebar, [data-theme='dark'] .topbar { border-color: var(--line); }
+[data-theme='dark'] .sidebar { background: var(--sidebar); }
+[data-theme='dark'] .nav-item.active { background: #35442a; color: #bfd2a8; }
+[data-theme='dark'] .sidebar-note, [data-theme='dark'] .sidebar-bottom { border-color: #3b482f; }
+[data-theme='dark'] .button.primary { background: #728e54; color: #f2f7e9; }
+[data-theme='dark'] .button.primary:hover { background: #849f66; }
+[data-theme='dark'] .button.secondary { color: #acc195; }
+[data-theme='dark'] .button.secondary:hover { background: #34412b; }
+[data-theme='dark'] .goal-card h3, [data-theme='dark'] .upcoming-body strong { color: #c2d0b2; }
+[data-theme='dark'] .goal-card:hover { border-color: #5b7048; }
+[data-theme='dark'] .card-footer, [data-theme='dark'] .upcoming-item { border-color: #38432f; }
+[data-theme='dark'] .progress-track { background: #3b482f; }
+[data-theme='dark'] .stat-icon, [data-theme='dark'] .priority, [data-theme='dark'] .date-block, [data-theme='dark'] .timer-options, [data-theme='dark'] .day-dot > span:first-child, [data-theme='dark'] .day-dot > i { background: #34412b; }
+[data-theme='dark'] .timer-display { color: #c0d2a8; }
+[data-theme='dark'] .timer-panel select, [data-theme='dark'] .check-item, [data-theme='dark'] .resource-item, [data-theme='dark'] .modal-footer { background: #252e20; border-color: #3a472e; }
+[data-theme='dark'] .chip.active { background: #455739; color: #c7d7b5; }
+[data-theme='dark'] .demo-banner, [data-theme='dark'] .tab.active { background: #313e28; border-color: #415136; color: #a7bc92; }
+[data-theme='dark'] .demo-banner button { color: #b3c69f; }
+[data-theme='dark'] .calendar-day { border-color: #37432d; }
+[data-theme='dark'] .calendar-day.outside, [data-theme='dark'] .calendar-day:hover { background: #232c1e; }
+[data-theme='dark'] .calendar-day.selected { background: #34452a; }
+[data-theme='dark'] .calendar-day.today .day-number { color: #24301c; }
+[data-theme='dark'] .calendar-event { background: #3e512f; color: #becfac; }
+[data-theme='dark'] .calendar-event.deadline-event { background: #584333; color: #dabc9f; }
+[data-theme='dark'] .toast { background: #2e3a24; border-color: #4d613b; color: #c0d4a8; }
+[data-theme='dark'] .empty-state { background: #252e1f; border-color: #485b37; }
+[data-theme='dark'] .bar-chart { background: repeating-linear-gradient(to top, transparent 0, transparent 44px, #36432d 44px, #36432d 45px); }
+[data-theme='dark'] .field input, [data-theme='dark'] .field select, [data-theme='dark'] .field textarea, [data-theme='dark'] .step-add input, [data-theme='dark'] .note-area { border-color: #455638; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}
+
+/* The working space: final component alignment and quiet charcoal appearance. */
+.skip-link { position: fixed; z-index: 200; left: 20px; top: -70px; padding: 11px 17px; border-radius: 8px; background: var(--ink); color: var(--paper); text-decoration: none; }
+.skip-link:focus { top: 15px; }
+.brand { gap: 12px; }
+.brand-mark { width: 34px; height: 35px; display: block; position: relative; font: italic 49px/.63 Georgia, serif; letter-spacing: -7px; }
+.brand-mark > span { font: 21px/1 Georgia, serif; color: var(--accent); position: absolute; top: -3px; right: -2px; letter-spacing: 0; }
+.brand-name { display: block; color: var(--ink); }
+.brand-sub { font-size: 8px; letter-spacing: 1.9px; }
+.sidebar nav > .nav-item > svg { width: 17px; height: 17px; }
+.nav-item.active::after { display: none; }
+.nav-count { margin-left: auto; font-size: 9px; display: grid; place-items: center; width: 20px; height: 20px; background: rgba(94,116,68,.075); color: #8c9b7b; border-radius: 5px; }
+.sidebar-note { padding: 20px 17px; }
+.sidebar-note::before { display: none; }
+.little-leaf { display: block; width: 28px; height: 28px; color: #96a582; font: 25px/1 Georgia, serif; margin-bottom: 8px; }
+.sidebar-note p { font: 400 21px/1.4 Georgia, serif; letter-spacing: -.3px; }
+.sidebar-note > span:last-child { display: block; margin-top: 12px; font-size: 10px; color: #a0a994; }
+.sidebar-bottom { display: block; padding-top: 11px; }
+.sidebar-bottom .nav-item { padding: 9px 8px; font-size: 12px; }
+.sidebar-bottom .save-indicator { margin: 13px 0 0 10px; font-size: 9px; gap: 6px; color: #909c81; }
+.save-indicator > span { display: block; width: 5px; height: 5px; border-radius: 50%; background: #9aad85; flex-shrink: 0; }
+.save-indicator .error-dot, .save-indicator.sync-error > span { background: #ce9777; }
+.save-indicator.sync-error { color: #ce9777; }
+.desktop-crumb { display: flex; align-items: center; gap: 10px; }
+.desktop-crumb > span { color: #c3cbb8; }
+#today-label { font-size: 11px; color: var(--muted); margin-right: 4px; }
+.topbar-actions #theme-button { margin-right: 1px; }
+.main-shell:focus { outline: none; }
+.stats-grid { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 17px; }
+.stat { padding: 21px 23px; min-height: 118px; }
+.stat label { font-size: 11px; color: #8e9784; font-weight: 400; display: block; }
+.stat strong { margin-top: 13px; font-size: 28px; font-weight: 400; line-height: 1; }
+.stat strong small { display: inline; color: #98a08f; font: 400 10px/1.4 var(--font); letter-spacing: 0; margin-left: 7px; }
+.stat-icon { top: 18px; right: 18px; }
+.demo-banner > span { display: flex; align-items: center; gap: 8px; }
+.demo-banner > span > svg { width: 14px; height: 14px; flex-shrink: 0; }
+.demo-banner > button { display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+.demo-banner > button > svg { width: 12px; height: 12px; }
+.text-link { display: inline-flex; align-items: center; gap: 6px; color: #7f9270; font-size: 11px; padding: 2px 0; }
+.text-link:hover { color: var(--moss); }
+.text-link svg { width: 13px; height: 13px; }
+.focus-banner { min-height: 238px; }
+.focus-copy { max-width: 78%; }
+.focus-copy .eyebrow::before { display: none; }
+.focus-copy .eyebrow > svg { width: 12px; height: 12px; }
+.focus-banner .focus-meta { font-size: 10px; margin-top: 16px; line-height: 1.6; flex-wrap: wrap; max-width: 360px; }
+.focus-copy .button { gap: 8px; }
+.focus-copy .button svg:last-child { margin-left: 5px; }
+.orbital { top: 25px; }
+.orbital > span:nth-child(1) { width: 6px; height: 6px; top: 17px; left: 33px; background: #cbd7b4; }
+.orbital > span:nth-child(2) { width: 4px; height: 4px; top: 147px; left: 151px; background: #9eb483; }
+.orbital > span:nth-child(3) { width: 3px; height: 3px; top: 27px; left: 161px; background: #c29f76; }
+.orbital > span:nth-child(4) { width: 3px; height: 3px; top: 156px; left: 34px; background: #c8d4b0; }
+.goal-card h3 { font-size: 15px; line-height: 1.45; }
+.goal-card .card-top { margin-bottom: 13px; }
+.goal-card .card-description { font-size: 11px; line-height: 1.7; min-height: 37px; }
+.goal-card .status-pill { font-size: 8px; padding: 3px 6px; white-space: nowrap; font-weight: 400; letter-spacing: .1px; }
+.status-pill.in-progress { color: #8b9d72; background: #eef2e6; }
+.status-pill.archived { color: #9b9c97; background: #f1f2ef; }
+.priority { display: inline-flex; gap: 4px; align-items: center; }
+.priority > i { width: 3px; height: 3px; border-radius: 50%; background: currentColor; }
+.deadline.overdue, .upcoming-body small.overdue { color: #c0816b; }
+.deadline.soon, .upcoming-body small.soon { color: #bb9c64; }
+.date-block.overdue { color: #b77b61; background: #faeee7; }
+.date-block.soon { color: #b79c65; background: #f8f2e4; }
+.progress-row { font-size: 10px; }
+.card-footer { margin-top: 21px; }
+.deadline, .priority { font-size: 9px; }
+.panel-heading h2 { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 500; }
+.panel-heading h2 > svg { width: 14px; height: 14px; }
+.quiet-label { font-size: 8px; letter-spacing: 1px; color: #9fa892; }
+.timer-panel .panel-heading { flex-wrap: wrap; gap: 5px; margin-bottom: 23px; }
+.timer-panel .panel-heading .quiet-label { font-size: 7px; letter-spacing: .8px; }
+.timer-display { font-size: 49px; margin-bottom: 18px; letter-spacing: -1.5px; }
+.timer-options { margin-bottom: 17px; gap: 3px; }
+.timer-options .chip { font-size: 9px; }
+.timer-save { display: block; margin: 14px auto 0; font-size: 10px; }
+.timer-hint { margin: 15px 0 0; font-size: 9px; line-height: 1.7; }
+.quote-note { font: italic 15px/1.7 Georgia, serif; color: #98a289; padding: 5px 18px; }
+.quote-note > span { display: block; color: #aeb6a2; font: 8px/1.5 var(--font); letter-spacing: 1px; text-transform: uppercase; margin-top: 11px; }
+.upcoming-body strong { font-size: 11px; }
+.upcoming-body small { font-size: 9px; }
+.empty-symbol { display: grid; place-items: center; width: 50px; height: 50px; margin: 0 auto 21px; border-radius: 50%; background: #edf2e3; color: #9daf86; }
+.empty-symbol svg { width: 25px; height: 25px; }
+.result-count { color: #9aa58d; font-size: 10px; white-space: nowrap; }
+.tabs { flex-wrap: wrap; }
+.learning-toolbar > select { max-width: 180px; font-size: 11px; min-height: 38px; }
+.learning-toolbar .search-field { min-height: 38px; }
+.learning-toolbar input { font-size: 12px; }
+.filter-row { align-items: center; }
+.calendar-aside .panel > h2 { font: 400 22px/1.4 Georgia, serif; letter-spacing: -.3px; }
+.calendar-aside .panel > .button { width: 100%; margin-top: 17px; font-size: 11px; }
+.day-agenda { display: grid; gap: 10px; margin-top: 20px; }
+.agenda-item { width: 100%; text-align: left; border-left: 2px solid #b6c49e; background: #f8faf3; border-radius: 0 7px 7px 0; padding: 11px 12px; }
+.agenda-item:hover { background: #f1f5e7; }
+.agenda-item > strong { display: block; font-size: 12px; line-height: 1.5; color: #7c8e67; margin-top: 5px; }
+.agenda-item > small { display: block; font-size: 9px; color: #a1ac93; margin-top: 6px; }
+.calendar-aside .calendar-explainer { font-size: 11px; line-height: 1.9; padding: 0 7px; color: #a0a98f; }
+.calendar-day { vertical-align: top; display: block; align-content: start; }
+.calendar-day > small { display: block; font-size: 7px; color: #a0aa93; margin: 3px 3px 0; }
+.calendar-toolbar .icon-button { font-size: 22px; font-weight: 300; }
+.bar-chart { height: 205px; padding: 0 8px; gap: 13px; margin: 8px 0 24px; background: none; }
+.bar-column { gap: 10px; height: 100%; }
+.bar-column > span { font-size: 9px; color: #9eaa90; }
+.bar-space { position: relative; height: 152px; width: 100%; display: flex; align-items: flex-end; justify-content: center; background: linear-gradient(to top, #f7f9f2 1px, transparent 1px); background-size: 100% 38px; border-radius: 4px; }
+.bar-space .bar { max-width: 38px; min-height: 3px; }
+.bar-space .bar:hover::after { display: none; }
+.bar-space .bar.current { background: #829c65; }
+.insight-caption { color: #9ba68f; font-size: 10px; line-height: 1.8; margin-top: 13px; }
+.category-breakdown { gap: 22px; }
+.category-row { display: block; }
+.category-row > div:first-child { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 8px; }
+.category-row > div:first-child > strong { color: #9aa88b; font-size: 10px; }
+.category-row .category { font-size: 9px; }
+.category-row > small { display: block; color: #a1ac94; font-size: 9px; margin-top: 7px; }
+.recent-panel { grid-column: 1 / -1; }
+.session-list { display: grid; }
+.session-row { display: flex; align-items: center; gap: 13px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+.session-row:first-child { padding-top: 0; }
+.session-row:last-child { padding-bottom: 0; border: 0; }
+.session-icon { display: grid; place-items: center; width: 34px; height: 34px; color: #a4b28f; background: #f3f6ed; border-radius: 8px; }
+.session-icon > svg { width: 15px; height: 15px; }
+.session-row > div { flex: 1; min-width: 0; }
+.session-row strong { display: block; color: #839471; font-size: 11px; font-weight: 500; }
+.session-row small { display: block; color: #a1ad94; font-size: 9px; margin-top: 4px; }
+.session-row > span:last-child { color: #9eac8e; font-size: 11px; white-space: nowrap; }
+.settings-wide { grid-column: 1 / -1; }
+.settings-wide .panel-heading { margin-bottom: 0; }
+.settings-grid p { font-size: 12px; }
+.settings-copy { max-width: 520px; }
+.backup-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.settings-grid .backup-actions .button + .button { margin: 0; }
+.backup-details { font-size: 10px; color: #a5af97; margin-top: 17px; padding-top: 16px; border-top: 1px solid var(--line); }
+.made-for-you { display: flex; align-items: center; justify-content: center; gap: 8px; font: italic 13px/1.5 Georgia, serif; color: #aab39d; margin-top: 30px; }
+.made-for-you svg { width: 15px; height: 15px; }
+.field-help { font-size: 10px; color: #a0ac92; line-height: 1.7; }
+.modal-footer > .field-help { margin-right: auto; max-width: 205px; font-size: 9px; }
+.field label { font-size: 12px; }
+.field .optional { margin-left: 4px; font-size: 10px; color: #9da992; }
+.modal-header { gap: 15px; }
+.modal-header > div { min-width: 0; }
+.modal-header h2 { overflow-wrap: anywhere; }
+.modal-header .icon-button { flex-shrink: 0; }
+.detail-description { color: #8f9e81; font-size: 12px; line-height: 1.8; overflow-wrap: anywhere; white-space: pre-wrap; }
+.detail-section .section-heading { margin-top: 22px; margin-bottom: 13px; }
+.detail-section .section-heading h3 { color: #748a60; font-size: 12px; font-weight: 500; }
+.detail-section .section-heading small { color: #a7b198; font-size: 9px; }
+.check-item { padding: 10px 11px; gap: 10px; align-items: flex-start; }
+.check-item label { display: flex; align-items: flex-start; gap: 9px; min-width: 0; flex: 1; }
+.check-item label > input { margin-top: 2px; flex-shrink: 0; }
+.check-item label > span { min-width: 0; overflow-wrap: anywhere; line-height: 1.7; }
+.check-item.checked label { text-decoration: none; }
+.check-item.checked label > span { text-decoration: line-through; }
+.step-controls { display: flex; gap: 1px; flex-shrink: 0; margin-top: -2px; }
+.icon-button.tiny { width: 23px; height: 23px; font-size: 13px; }
+.icon-button.tiny svg { width: 12px; height: 12px; }
+.check-item .icon-button { opacity: .65; }
+.resource-form { display: grid; grid-template-columns: minmax(0,.85fr) minmax(0,1.4fr) auto; align-items: stretch; gap: 7px; }
+.resource-form input { width: 100%; min-width: 0; min-height: 37px; padding: 9px 10px; color: var(--ink); border: 1px solid var(--line); border-radius: 6px; background: var(--surface); font-size: 11px; }
+.resource-form input:focus { outline: none; border-color: #9faf89; box-shadow: 0 0 0 3px rgba(145,168,113,.09); }
+.resource-form input::placeholder { color: #a7b19a; }
+.resource-item a { display: flex; align-items: center; gap: 6px; }
+.resource-item a > svg { width: 12px; height: 12px; margin-left: auto; flex-shrink: 0; }
+.notes-save { margin-top: 10px; }
+.note-area { display: block; }
+.goal-time-summary { border-top: 1px solid var(--line); padding: 15px 0 17px; display: flex; align-items: center; gap: 7px; color: #9dac8e; font-size: 10px; }
+.goal-time-summary > svg { width: 13px; height: 13px; }
+.detail-footer { position: sticky; bottom: 0; z-index: 1; }
+.detail-tools { display: flex; align-items: center; gap: 4px; margin-right: auto; }
+.icon-button.destructive:hover { background: #f9ece5; color: #b37960; }
+.confirm-modal .modal-body { padding-bottom: 26px; font-size: 13px; line-height: 1.8; color: #8f9b83; }
+.confirm-modal .modal-footer { flex-wrap: wrap; }
+.toast button { width: auto; min-width: 27px; padding: 0 3px; color: #729451; font-size: 11px; font-weight: 500; white-space: nowrap; }
+.storage-warning, .sync-error-banner { padding: 12px 15px; margin-bottom: 20px; border: 1px solid #e8d9c6; background: #faf5eb; border-radius: 8px; color: #aa8b5e; font-size: 11px; line-height: 1.8; }
+.storage-warning .text-link, .sync-error-banner .text-link { margin-left: 8px; color: inherit; text-decoration: underline; }
+.sync-error { color: #c99172; }
+
+/* Charcoal, ivory and sage. Dark remains calm without tinting the entire canvas green. */
+[data-theme='dark'] {
+  --paper: #191b1b;
+  --surface: #222524;
+  --surface-soft: #2c302d;
+  --sidebar: #1c1f1e;
+  --ink: #e6e6dd;
+  --muted: #91968e;
+  --line: #333834;
+  --line-strong: #485147;
+  --moss: #b4c797;
+  --moss-deep: #cad9b4;
+  --moss-soft: #2d3629;
+  --accent: #c39572;
+  --accent-soft: #3b3028;
+  --danger: #d1a08a;
+  --shadow: 0 12px 35px rgba(0,0,0,.13);
+}
+[data-theme='dark'] body { background: var(--paper); color: var(--ink); }
+[data-theme='dark'] ::selection { background: #536444; color: #f2f5eb; }
+[data-theme='dark'] .sidebar { background: var(--sidebar); border-color: #303531; }
+[data-theme='dark'] .brand-mark { color: #b9cba0; }
+[data-theme='dark'] .brand-name { color: #e3e6db; }
+[data-theme='dark'] .brand-sub { color: #848e7c; }
+[data-theme='dark'] .nav-label { color: #697268; }
+[data-theme='dark'] .nav-item { color: #959c91; }
+[data-theme='dark'] .nav-item:hover { color: #d0d8c5; background: #282f26; }
+[data-theme='dark'] .nav-item.active { color: #c0d4a7; background: #2c3627; }
+[data-theme='dark'] .nav-count { background: #3a452f; color: #a1b58c; }
+[data-theme='dark'] .sidebar-note { border-color: #373e31; background: linear-gradient(145deg, #222922, #20251f); }
+[data-theme='dark'] .sidebar-note .little-leaf { color: #a0b488; }
+[data-theme='dark'] .sidebar-note p { color: #b4c0a4; }
+[data-theme='dark'] .sidebar-note > span:last-child { color: #77816f; }
+[data-theme='dark'] .sidebar-bottom { border-color: #30372e; }
+[data-theme='dark'] .sidebar-bottom .save-indicator { color: #79876e; }
+[data-theme='dark'] .topbar { background: #1a1d1b; border-color: #2e3430; }
+[data-theme='dark'] .breadcrumb, [data-theme='dark'] .desktop-crumb { color: #767f72; }
+[data-theme='dark'] .desktop-crumb > span { color: #4c5548; }
+[data-theme='dark'] .breadcrumb strong { color: #adb7a5; }
+[data-theme='dark'] #today-label { color: #858f7c; }
+[data-theme='dark'] .eyebrow { color: #84966f; }
+[data-theme='dark'] .page-heading h1 { color: #e5e7dd; }
+[data-theme='dark'] .page-heading p { color: #91998a; }
+[data-theme='dark'] .button.primary { background: #b3c497; color: #273120; border-color: #b3c497; box-shadow: 0 2px 4px rgba(0,0,0,.1); font-weight: 600; }
+[data-theme='dark'] .button.primary:hover { background: #cad6b6; border-color: #cad6b6; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
+[data-theme='dark'] .button.secondary { background: #2c312b; color: #b4c1a6; border-color: #404b38; }
+[data-theme='dark'] .button.secondary:hover { background: #374030; border-color: #69795b; }
+[data-theme='dark'] .button.ghost { color: #a9ba97; }
+[data-theme='dark'] .button.ghost:hover { background: #2f3829; }
+[data-theme='dark'] .button.danger { background: #3b2f28; border-color: #5c4437; color: #d3a88b; }
+[data-theme='dark'] .button.danger:hover { background: #4d382c; }
+[data-theme='dark'] .icon-button { color: #849079; }
+[data-theme='dark'] .icon-button:hover { background: #313a2b; color: #beceaa; }
+[data-theme='dark'] .icon-button.destructive:hover { background: #452f25; color: #dcaa8b; }
+[data-theme='dark'] .text-link { color: #9eb587; }
+[data-theme='dark'] .text-link:hover { color: #cfddbd; }
+[data-theme='dark'] .stat { background: #222623; border-color: #343b31; }
+[data-theme='dark'] .stat label { color: #949e8a; }
+[data-theme='dark'] .stat strong { color: #dce4d0; }
+[data-theme='dark'] .stat strong small { color: #7d8972; }
+[data-theme='dark'] .stat-icon { background: #2b3526; color: #9bb47e; }
+[data-theme='dark'] .stat:nth-child(2) .stat-icon { background: #323328; color: #b3b387; }
+[data-theme='dark'] .stat:nth-child(3) .stat-icon { background: #353026; color: #c3a480; }
+[data-theme='dark'] .demo-banner { background: #242c23; border-color: #384631; color: #92a47e; }
+[data-theme='dark'] .demo-banner button { color: #b4c99a; }
+[data-theme='dark'] .focus-banner { background: linear-gradient(115deg,#303e2b 0%,#283626 67%,#2d3a27 100%); border: 1px solid #435538; padding: 26px 28px; }
+[data-theme='dark'] .focus-banner::after { background: radial-gradient(ellipse at 90% 40%,rgba(178,191,129,.065),transparent 65%); }
+[data-theme='dark'] .focus-banner .eyebrow { color: #9bb780; }
+[data-theme='dark'] .focus-banner h2 { color: #e3e9d6; }
+[data-theme='dark'] .focus-banner p { color: #b0bda1; }
+[data-theme='dark'] .focus-banner .button { background: #c2d1a8; color: #324226; border-color: transparent; }
+[data-theme='dark'] .focus-banner .button:hover { background: #d6dfc2; }
+[data-theme='dark'] .focus-meta { color: #8fa67a; }
+[data-theme='dark'] .orbital { border-color: rgba(174,196,141,.2); }
+[data-theme='dark'] .orbital::before { border-color: rgba(174,196,141,.21); }
+[data-theme='dark'] .orbital::after { background: radial-gradient(circle at 32% 24%,#aab98a,#798f5b 45%,#415836 95%); box-shadow: 0 0 44px rgba(177,201,136,.07),12px 15px 25px rgba(10,20,7,.3); }
+[data-theme='dark'] .section-heading h2 { color: #d8dfcf; }
+[data-theme='dark'] .section-heading p { color: #828f76; }
+[data-theme='dark'] .goal-card { background: #242823; border-color: #353e30; }
+[data-theme='dark'] .goal-card:hover { background: #272d25; border-color: #5a6e48; box-shadow: 0 10px 25px rgba(0,0,0,.1); }
+[data-theme='dark'] .goal-card h3 { color: #d9e1cd; font-weight: 500; }
+[data-theme='dark'] .goal-card .card-open:hover h3 { color: #c4d9a9; }
+[data-theme='dark'] .card-description { color: #8e9c81; }
+[data-theme='dark'] .category { color: #98ad81; }
+[data-theme='dark'] .progress-row { color: #82916f; }
+[data-theme='dark'] .progress-row strong { color: #a8c089; }
+[data-theme='dark'] .progress-track { background: #35432b; }
+[data-theme='dark'] .progress-track i { background: #90a96f; }
+[data-theme='dark'] .card-footer { border-color: #35402c; }
+[data-theme='dark'] .deadline { color: #91a17e; }
+[data-theme='dark'] .deadline.overdue, [data-theme='dark'] .upcoming-body small.overdue { color: #c99375; }
+[data-theme='dark'] .deadline.soon, [data-theme='dark'] .upcoming-body small.soon { color: #c6ac70; }
+[data-theme='dark'] .priority { background: #2d3826; color: #899b73; }
+[data-theme='dark'] .priority.high { background: #3c3227; color: #c7a17b; }
+[data-theme='dark'] .priority.medium { background: #353726; color: #b2af75; }
+[data-theme='dark'] .priority.low { background: #2c3825; color: #92a67a; }
+[data-theme='dark'] .status-pill { background: #2c3826; color: #95af7a; }
+[data-theme='dark'] .status-pill.in-progress { background: #34412c; color: #a5bc8b; }
+[data-theme='dark'] .status-pill.completed { background: #334129; color: #b1c696; }
+[data-theme='dark'] .status-pill.planned { background: #333332; color: #adaf9b; }
+[data-theme='dark'] .status-pill.archived { background: #30342d; color: #8d9982; }
+[data-theme='dark'] .panel { background: #232723; border-color: #353d31; }
+[data-theme='dark'] .panel-heading h2 { color: #d0dbc5; }
+[data-theme='dark'] .panel-heading p, [data-theme='dark'] .panel-heading .quiet-label { color: #768869; }
+[data-theme='dark'] .panel-heading h2 > svg { color: #9ab77c; }
+[data-theme='dark'] .upcoming-item { border-color: #343d2e; }
+[data-theme='dark'] .upcoming-item:hover .upcoming-body strong { color: #c8dcac; }
+[data-theme='dark'] .upcoming-body strong { color: #b5c6a2; }
+[data-theme='dark'] .upcoming-body small { color: #7d926b; }
+[data-theme='dark'] .date-block { background: #303d27; color: #acc48e; }
+[data-theme='dark'] .date-block.soon { background: #3c3a27; color: #c6b985; }
+[data-theme='dark'] .date-block.overdue { background: #3d3127; color: #c89e78; }
+[data-theme='dark'] .timer-display { color: #d7e3c8; font-weight: 300; }
+[data-theme='dark'] .timer-options { background: #1d261a; }
+[data-theme='dark'] .chip { color: #839b6f; }
+[data-theme='dark'] .chip.active { background: #38482e; color: #bdd2a3; box-shadow: 0 2px 4px rgba(0,0,0,.12); }
+[data-theme='dark'] .timer-panel select { background: #263020; border-color: #3d4e31; color: #a3b88c; }
+[data-theme='dark'] .timer-hint { color: #748d61; }
+[data-theme='dark'] .timer-buttons .icon-button { border-color: #415236; }
+[data-theme='dark'] .quote-note { color: #80956b; }
+[data-theme='dark'] .quote-note > span { color: #5c734e; }
+[data-theme='dark'] .filter-row select, [data-theme='dark'] .learning-toolbar select { color: #a3b58f; border-color: #405333; background: #263121; }
+[data-theme='dark'] .search-field { background: #242d20; border-color: #3d4c32; }
+[data-theme='dark'] .search-field input::placeholder { color: #6e845c; }
+[data-theme='dark'] .search-field svg { color: #90a579; }
+[data-theme='dark'] .tab { color: #83976f; }
+[data-theme='dark'] .tab.active { background: #324429; color: #c0d3a8; }
+[data-theme='dark'] .tab:hover { background: #2b3823; color: #b3c89a; }
+[data-theme='dark'] .result-count { color: #799266; }
+[data-theme='dark'] .empty-state { background: #232c1e; border-color: #445a34; }
+[data-theme='dark'] .empty-symbol { color: #a0ba7f; background: #304327; }
+[data-theme='dark'] .empty-state h3 { color: #cfdec0; }
+[data-theme='dark'] .empty-state p, [data-theme='dark'] .empty-small { color: #8aa174; }
+[data-theme='dark'] .calendar-toolbar h2, [data-theme='dark'] .calendar-aside .panel > h2 { color: #cdddc0; }
+[data-theme='dark'] .calendar-grid, [data-theme='dark'] .calendar-day { border-color: #354a2c; }
+[data-theme='dark'] .calendar-day { background: #242c21; }
+[data-theme='dark'] .calendar-day.outside { background: #20271d; }
+[data-theme='dark'] .calendar-day:hover { background: #2b3823; }
+[data-theme='dark'] .calendar-day.selected { background: #304429; box-shadow: inset 0 0 0 1px #587047; }
+[data-theme='dark'] .day-number { color: #9bbd84; }
+[data-theme='dark'] .calendar-day.outside .day-number { color: #4b6740; }
+[data-theme='dark'] .calendar-day.today .day-number { background: #afc394; color: #2e4323; }
+[data-theme='dark'] .calendar-weekdays { color: #79986a; }
+[data-theme='dark'] .calendar-event.planned-event { background: #3c5430; color: #bbd2a5; }
+[data-theme='dark'] .calendar-event.deadline-event { background: #4a4130; color: #d2bd94; }
+[data-theme='dark'] .calendar-day > small, [data-theme='dark'] .calendar-legend { color: #7fa16e; }
+[data-theme='dark'] .agenda-item { background: #283722; border-color: #78965e; }
+[data-theme='dark'] .agenda-item:hover { background: #33472a; }
+[data-theme='dark'] .agenda-item > strong { color: #b4cda0; }
+[data-theme='dark'] .agenda-item > small { color: #809f6d; }
+[data-theme='dark'] .calendar-aside .calendar-explainer { color: #79966a; }
+[data-theme='dark'] .bar-chart { background: none; }
+[data-theme='dark'] .bar-space { background-image: linear-gradient(to top,#35492b 1px,transparent 1px); }
+[data-theme='dark'] .bar-column > span, [data-theme='dark'] .bar-column > small { color: #8fab76; background: none; }
+[data-theme='dark'] .bar-space .bar { background: #749753; }
+[data-theme='dark'] .bar-space .bar.current { background: #b2ce8e; }
+[data-theme='dark'] .insight-caption { color: #829f6f; }
+[data-theme='dark'] .category-row > div:first-child > strong { color: #adca90; }
+[data-theme='dark'] .category-row > small { color: #7e9d6a; }
+[data-theme='dark'] .session-icon { background: #304127; color: #9abd7e; }
+[data-theme='dark'] .session-row { border-color: #354a2a; }
+[data-theme='dark'] .session-row strong { color: #b7d1a1; }
+[data-theme='dark'] .session-row small, [data-theme='dark'] .session-row > span:last-child { color: #81a26b; }
+[data-theme='dark'] .settings-grid h2 { color: #c4d9b1; }
+[data-theme='dark'] .settings-grid p { color: #8baa78; }
+[data-theme='dark'] .backup-details { color: #729162; border-color: #3b532e; }
+[data-theme='dark'] .made-for-you { color: #6d8e5c; }
+[data-theme='dark'] .field label { color: #a9c595; }
+[data-theme='dark'] .field label span, [data-theme='dark'] .field .optional { color: #718f61; }
+[data-theme='dark'] .field small, [data-theme='dark'] .field-help { color: #7d9e6b; }
+[data-theme='dark'] .field input, [data-theme='dark'] .field select, [data-theme='dark'] .field textarea, [data-theme='dark'] .step-add input, [data-theme='dark'] .note-area, [data-theme='dark'] .resource-form input { background: #202b1c; color: #c8dcbc; border-color: #3d5630; }
+[data-theme='dark'] .field input:focus, [data-theme='dark'] .field select:focus, [data-theme='dark'] .field textarea:focus, [data-theme='dark'] .step-add input:focus, [data-theme='dark'] .note-area:focus, [data-theme='dark'] .resource-form input:focus { border-color: #92ac72; box-shadow: 0 0 0 3px rgba(148,178,113,.09); }
+[data-theme='dark'] .field input::placeholder, [data-theme='dark'] .field textarea::placeholder, [data-theme='dark'] .step-add input::placeholder, [data-theme='dark'] .note-area::placeholder, [data-theme='dark'] .resource-form input::placeholder { color: #688b55; }
+[data-theme='dark'] .field input:user-invalid { background: #342b20; border-color: #8b6242; }
+[data-theme='dark'] dialog.modal { background: #252c22; border-color: #445c36; box-shadow: 0 25px 100px rgba(0,0,0,.5); }
+[data-theme='dark'] dialog.modal::backdrop { background: rgba(8,13,7,.73); }
+[data-theme='dark'] .modal-header { border-color: #3b512f; }
+[data-theme='dark'] .modal-header h2 { color: #dae6cd; }
+[data-theme='dark'] .modal-footer { background: #202c1c; border-color: #3b532e; }
+[data-theme='dark'] .detail-description { color: #96b180; }
+[data-theme='dark'] .detail-meta { color: #8aa775; }
+[data-theme='dark'] .detail-section .section-heading h3 { color: #b4cc9f; }
+[data-theme='dark'] .detail-section .section-heading small, [data-theme='dark'] .quiet-label { color: #729761; }
+[data-theme='dark'] .check-item { background: #283722; border-color: #3d542f; }
+[data-theme='dark'] .check-item label { color: #b1c89c; }
+[data-theme='dark'] .check-item.checked label { color: #6c8d58; }
+[data-theme='dark'] .resource-item { background: #25341f; border-color: #3d562e; }
+[data-theme='dark'] .resource-item a { color: #9cbd81; }
+[data-theme='dark'] .resource-item > svg { color: #809f6d; }
+[data-theme='dark'] .goal-time-summary { color: #789d63; border-color: #3d572e; }
+[data-theme='dark'] .confirm-modal .modal-body { color: #a2bd8b; }
+[data-theme='dark'] .toast { background: #2a3a22; border-color: #55733d; color: #c0d8a8; box-shadow: 0 7px 30px rgba(0,0,0,.3); }
+[data-theme='dark'] .toast button { color: #cbdfa8; }
+[data-theme='dark'] .storage-warning, [data-theme='dark'] .sync-error-banner { background: #393225; border-color: #625334; color: #d4b987; }
+
+/* Neutral surfaces keep the sage accents deliberate. */
+[data-theme='dark'] .goal-card { background: #252825; border-color: #363d34; }
+[data-theme='dark'] .goal-card:hover { background: #2a2f28; }
+[data-theme='dark'] .panel { background: #242724; border-color: #343a32; }
+[data-theme='dark'] .card-description, [data-theme='dark'] .detail-description { color: #a0a998; }
+[data-theme='dark'] .goal-card h3, [data-theme='dark'] .panel-heading h2 { color: #dbe1d3; }
+[data-theme='dark'] .upcoming-body strong { color: #c2cdb7; }
+[data-theme='dark'] .upcoming-body small { color: #909f81; }
+[data-theme='dark'] .timer-options { background: #1e231c; }
+[data-theme='dark'] .timer-panel select { background: #262d23; border-color: #424d38; color: #aab99a; }
+[data-theme='dark'] .timer-hint, [data-theme='dark'] .quote-note { color: #8a9a7b; }
+[data-theme='dark'] .quote-note > span { color: #778768; }
+[data-theme='dark'] .search-field, [data-theme='dark'] .filter-row select, [data-theme='dark'] .learning-toolbar select { background: #262b23; border-color: #414b37; }
+[data-theme='dark'] .search-field input::placeholder { color: #89987a; }
+[data-theme='dark'] .calendar-day { background: #252a22; }
+[data-theme='dark'] .calendar-day.outside { background: #21251e; }
+[data-theme='dark'] .calendar-grid, [data-theme='dark'] .calendar-day { border-color: #39442e; }
+[data-theme='dark'] .calendar-day.selected { background: #303d28; }
+[data-theme='dark'] .calendar-toolbar h2, [data-theme='dark'] .calendar-aside .panel > h2 { color: #d0dbbf; }
+[data-theme='dark'] .calendar-aside .calendar-explainer { color: #99aa85; }
+[data-theme='dark'] .agenda-item { background: #2c3526; }
+[data-theme='dark'] .agenda-item > small, [data-theme='dark'] .calendar-legend { color: #95aa80; }
+[data-theme='dark'] .bar-column > span, [data-theme='dark'] .bar-column > small { color: #9daf8a; }
+[data-theme='dark'] .insight-caption, [data-theme='dark'] .category-row > small { color: #96a886; }
+[data-theme='dark'] .session-row strong { color: #bfceb0; }
+[data-theme='dark'] .session-row small, [data-theme='dark'] .session-row > span:last-child { color: #98ad86; }
+[data-theme='dark'] .settings-grid h2 { color: #d0ddc1; }
+[data-theme='dark'] .settings-grid p { color: #a2b28f; }
+[data-theme='dark'] .backup-details, [data-theme='dark'] .made-for-you { color: #8b9e78; }
+[data-theme='dark'] .field label { color: #b9caaa; }
+[data-theme='dark'] .field label span, [data-theme='dark'] .field .optional { color: #8a9b7b; }
+[data-theme='dark'] .field small, [data-theme='dark'] .field-help { color: #95a884; }
+[data-theme='dark'] .field input, [data-theme='dark'] .field select, [data-theme='dark'] .field textarea, [data-theme='dark'] .step-add input, [data-theme='dark'] .note-area, [data-theme='dark'] .resource-form input { background: #21281e; color: #dae4cf; border-color: #46583b; }
+[data-theme='dark'] .field input::placeholder, [data-theme='dark'] .field textarea::placeholder, [data-theme='dark'] .step-add input::placeholder, [data-theme='dark'] .note-area::placeholder, [data-theme='dark'] .resource-form input::placeholder { color: #819771; }
+[data-theme='dark'] dialog.modal { background: #282d24; border-color: #4a5a3f; }
+[data-theme='dark'] .modal-header, [data-theme='dark'] .modal-footer { border-color: #405033; }
+[data-theme='dark'] .modal-footer { background: #242c1f; }
+[data-theme='dark'] .detail-section .section-heading h3 { color: #c6d6b5; }
+[data-theme='dark'] .detail-section .section-heading small, [data-theme='dark'] .quiet-label { color: #8a9e78; }
+[data-theme='dark'] .check-item { background: #2b3424; border-color: #435536; }
+[data-theme='dark'] .check-item label { color: #c5d4b3; }
+[data-theme='dark'] .check-item.checked label { color: #889e73; }
+[data-theme='dark'] .resource-item { background: #283221; border-color: #465839; }
+[data-theme='dark'] .resource-item a { color: #b5cda0; }
+[data-theme='dark'] .goal-time-summary { color: #96ad83; }
+
+@media (min-width: 1550px) {
+  .focus-banner { min-height: 258px; }
+  .focus-banner h2 { font-size: 32px; }
+  .goal-card { padding-top: 21px; }
+  .card-description { font-size: 12px; }
+}
+@media (max-width: 1200px) {
+  .stat strong small { display: block; margin-left: 0; margin-top: 8px; }
+  .stat { min-height: 128px; padding: 21px; }
+  .focus-banner { min-height: 242px; }
+  .focus-copy { max-width: 90%; }
+  .goal-card .card-top { gap: 5px; flex-wrap: wrap; }
+  .goal-card h3 { font-size: 14px; }
+  .timer-panel .panel-heading .quiet-label { display: none; }
+}
+@media (max-width: 1100px) {
+  .side-column { grid-template-columns: 1fr 1fr; align-items: start; }
+  .side-column .panel { padding: 20px; }
+  .side-column .quote-note { display: none; }
+  .focus-copy { max-width: 73%; }
+  .goal-card .card-top { flex-wrap: nowrap; }
+  .calendar-aside { grid-template-columns: 1fr; }
+  .calendar-aside .calendar-explainer { max-width: 560px; }
+}
+@media (max-width: 900px) {
+  .stats-grid { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
+  .stat { padding: 17px 15px; min-height: 134px; }
+  .stat label { max-width: 78px; min-height: 31px; font-size: 10px; line-height: 1.5; }
+  .stat strong { margin-top: 8px; font-size: 27px; }
+  .stat strong small { font-size: 9px; }
+  .stat-icon { width: 24px; height: 24px; right: 12px; top: 16px; }
+  .stat-icon svg { width: 12px; height: 12px; }
+  .demo-banner { font-size: 10px; }
+  .demo-banner button { font-size: 10px; }
+  .settings-wide .panel-heading { align-items: flex-start; }
+}
+@media (max-width: 760px) {
+  .sidebar { flex-direction: row; gap: 3px; align-items: stretch; }
+  .sidebar nav { width: 80%; flex: 4; gap: 3px; }
+  .sidebar .sidebar-bottom { display: flex; width: 20%; flex: 1; border: 0; padding: 0; margin: 0; }
+  .sidebar-bottom > .nav-item { padding: 7px 4px; font-size: 9px; line-height: 1.3; width: 100%; }
+  .sidebar-bottom > .save-indicator { display: none; }
+  .sidebar .nav-count { display: none; }
+  .nav-item { font-size: 9px; gap: 4px; }
+  .sidebar nav > .nav-item > svg { width: 18px; height: 18px; }
+  .topbar .breadcrumb { display: flex; }
+  .desktop-crumb { display: none; }
+  .mobile-brand { display: flex; gap: 2px; font-size: 30px; color: var(--ink); }
+  .mobile-brand > span { font-size: 20px; color: var(--accent); align-self: flex-start; line-height: .7; margin-top: 3px; }
+  #today-label { display: none; }
+  .stats-grid { gap: 12px; }
+  .stat label { max-width: none; min-height: 0; }
+  .stat-icon { display: none; }
+  .stat { padding: 18px; min-height: 114px; }
+  .stat strong { margin-top: 12px; }
+  .stat strong small { font-size: 9px; }
+  .focus-copy { max-width: 75%; }
+  .learning-toolbar > select { max-width: none; flex: 1; }
+  .learning-toolbar .search-field { flex-basis: 100%; }
+  .calendar-aside { grid-template-columns: 1fr; }
+  .insights-grid { grid-template-columns: 1fr; }
+  .recent-panel { grid-column: auto; }
+  .settings-wide { grid-column: auto; }
+  [data-theme='dark'] .sidebar { background: rgba(27,31,27,.97); border-color: #3a4530; }
+  [data-theme='dark'] .sidebar .nav-item.active { background: #33402b; }
+}
+@media (max-width: 560px) {
+  .stat { padding: 15px 12px; min-height: 115px; border-radius: 9px; }
+  .stat label { min-height: 30px; line-height: 1.5; font-size: 9px; }
+  .stat strong { margin-top: 7px; font-size: 26px; }
+  .stat strong small { font-size: 8px; line-height: 1.4; margin-top: 7px; }
+  .stats-grid { gap: 9px; margin-bottom: 22px; }
+  .demo-banner { align-items: flex-start; }
+  .demo-banner > span { align-items: flex-start; }
+  .demo-banner > span > svg { margin-top: 2px; }
+  .demo-banner > button { font-size: 9px; margin-top: 1px; }
+  .demo-banner > button > svg { display: none; }
+  .focus-copy { max-width: 91%; }
+  .focus-banner { min-height: 239px; }
+  .focus-banner .focus-meta { max-width: 255px; font-size: 9px; }
+  .focus-banner p { max-width: 275px; }
+  .side-column .panel { padding: 19px; }
+  .goal-card h3 { font-size: 16px; }
+  .goal-card .card-description { min-height: 0; }
+  .learning-toolbar > select { font-size: 10px; padding: 8px 21px 8px 9px; }
+  .filter-row { flex-wrap: nowrap; align-items: flex-start; }
+  .filter-row .tabs { gap: 4px; }
+  .filter-row .result-count { margin-top: 7px; }
+  .tab { font-size: 10px; padding: 7px 9px; }
+  .settings-wide .panel-heading { display: block; }
+  .settings-wide .panel-heading > .button { margin-top: 10px; }
+  .resource-form { grid-template-columns: minmax(0,1fr) auto; }
+  .resource-form input[name='label'] { grid-column: 1 / -1; }
+  .modal-footer > .field-help { display: none; }
+  .detail-footer { gap: 7px; }
+  .detail-footer > .button { min-width: 0; font-size: 10px; padding: 8px 10px; }
+  .detail-tools { gap: 1px; }
+  .detail-tools .icon-button { width: 26px; }
+  .check-item { gap: 4px; }
+  .check-item label { font-size: 11px; }
+  .step-controls { gap: 0; }
+  .step-controls .icon-button { width: 21px; }
+  .detail-section .section-heading { gap: 9px; }
+  .detail-section .section-heading h3 { font-size: 11px; }
+  .detail-section .section-heading small { font-size: 8px; }
+}
+@media (max-width: 480px) {
+  .topbar-actions .button { font-size: 11px; }
+  .sidebar-bottom > .nav-item { font-size: 8px; }
+  .sidebar-bottom > .nav-item > span { max-width: 62px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .side-column { grid-template-columns: 1fr; }
+  .side-column .panel { padding: 22px; }
+  .timer-panel .panel-heading .quiet-label { display: block; font-size: 7px; }
+  .side-column .timer-display { font-size: 49px; }
+  .timer-options { max-width: none !important; }
+  .timer-hint { font-size: 10px; }
+  .timer-save { font-size: 11px; }
+  .upcoming-body strong { font-size: 12px; }
+  .upcoming-body small { font-size: 10px; }
+  .goal-card .card-top { margin-bottom: 14px; }
+  .resource-form input { font-size: 16px; }
+  .resource-form .button { font-size: 10px; padding: 7px 10px; }
+  .resource-form { gap: 8px; }
+  .field input[type='date'] { font-size: 14px; width: 100%; max-width: 100%; }
+  .field input[type='date']::-webkit-date-and-time-value { text-align: left; }
+  .detail-footer { padding: 14px 16px; }
+  .detail-footer .detail-tools { width: 100%; margin-bottom: 3px; }
+  .detail-footer > .button { flex: 1; font-size: 11px; }
+  .detail-tools .icon-button { width: 31px; height: 29px; }
+  .modal-header h2 { font-size: 25px; }
+  .modal-footer .button { min-height: 38px; }
+  .confirm-modal .modal-footer { flex-direction: column; align-items: stretch; }
+  .confirm-modal .modal-footer .button { width: 100%; margin: 0; }
+  .settings-grid .backup-actions .button + .button { margin: 0; }
+  .settings-grid .backup-actions { gap: 8px; }
+  .made-for-you { font-size: 11px; }
+  .empty-state h3 { font-size: 23px; }
+}
+/* Account connection and recovery states. */
+.connection-gate { position:fixed; inset:0; z-index:10000; display:grid; place-items:center; background:var(--bg,#151917); color:var(--text,#e7e9e5); padding:24px; text-align:center; }
+.connection-gate>div { max-width:440px; }
+.connection-gate h2 { font:400 32px/1.2 Georgia,serif; margin:24px 0 14px; }
+.connection-gate p { color:var(--muted,#9aa39b); margin-bottom:28px; line-height:1.7; }
+.connection-gate .button { display:inline-flex; margin:5px; }
+.loading-mark { display:inline-grid; place-items:center; width:64px; height:64px; border:1px solid #6e8777; border-radius:20px; background:#25362d; color:#c2d6ba; font:italic 48px Georgia,serif; }
+.sync-controls {display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+.storage-warning {margin-bottom:20px;padding:16px;border:1px solid #826548;border-radius:12px;background:#433524;color:#ecd5b6;line-height:1.6;}
+.storage-warning .text-link {color:inherit;text-decoration:underline;}
+.timer-save:disabled {opacity:.4;cursor:default;}
+
+@media(max-width:760px){.desktop-only{display:none}}
+
+.preview-notice{padding:10px 24px;background:#3d3525;color:#e4d3ac;font-size:12px;text-align:center;border-bottom:1px solid #695637;line-height:1.6}</style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a href="#overview" class="brand" aria-label="Still home"><span class="brand-mark">s<span>•</span></span><span><span class="brand-name">still</span><span class="brand-sub">A SPACE TO GROW</span></span></a>
+      <div class="nav-label">YOUR WORKSPACE</div>
+      <nav id="navigation"></nav>
+      <div class="sidebar-note"><span class="little-leaf">↗</span><p>Small steps.<br>Lasting knowledge.</p><span>A little, every day.</span></div>
+      <div class="sidebar-bottom"><button class="nav-item" data-view="settings" id="settings-nav"></button><div class="save-indicator" id="save-status"><span></span>Connecting securely…</div></div>
+    </aside>
+    <main class="main-shell" id="main-content" tabindex="-1"><div class="preview-notice">Local preview · Saved in this browser only · Private cloud publication is pending</div>
+      <header class="topbar"><div class="breadcrumb"><span class="mobile-brand">still<span>•</span></span><span class="desktop-crumb">Workspace <span>/</span> <strong id="current-view">Overview</strong></span></div><div class="topbar-actions"><span id="today-label"></span><button class="icon-button" id="theme-button" aria-label="Switch color theme"></button><button class="button primary small" data-action="new-goal">＋ <span>New goal</span></button></div></header>
+      <div class="page" id="page"></div>
+    </main>
+  </div>
+  <dialog class="modal" id="goal-modal" aria-labelledby="goal-modal-title"></dialog>
+  <dialog class="modal detail-modal" id="detail-modal" aria-labelledby="detail-title"></dialog>
+  <dialog class="modal confirm-modal" id="confirm-modal" aria-labelledby="confirm-title"></dialog>
+  <div class="toast-container" id="toasts" role="status" aria-live="polite"></div>
+  <input type="file" id="import-file" class="file-input" accept="application/json,.json" aria-label="Import a Still backup">
+<script type="module">const DAY_MS = 86_400_000;
+const STATUSES = new Set(['planned', 'in-progress', 'completed', 'archived']);
+const PRIORITIES = new Set(['high', 'medium', 'low']);
+
+function uid() {
+  if (globalThis.crypto?.randomUUID) return globalThis.crypto.randomUUID();
+  return `id-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}-${Math.random().toString(36).slice(2)}`;
+}
+
+function dateKey(date = new Date()) {
+  if (!(date instanceof Date) || !Number.isFinite(date.getTime())) throw new TypeError('A valid date is required.');
+  return `${String(date.getFullYear()).padStart(4, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+}
+
+function isCalendarDate(value) {
+  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const [year, month, day] = value.split('-').map(Number);
+  if (year < 1 || month < 1 || month > 12 || day < 1) return false;
+  const leap = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+  return day <= [31, leap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month - 1];
+}
+
+function calendarTime(value) {
+  if (!isCalendarDate(value)) throw new TypeError('Use a real date in YYYY-MM-DD format.');
+  return Date.parse(`${value}T00:00:00.000Z`);
+}
+
+function addDays(dateString, n) {
+  if (!Number.isInteger(n)) throw new TypeError('The number of days must be an integer.');
+  const result = new Date(calendarTime(dateString) + n * DAY_MS);
+  if (!Number.isFinite(result.getTime())) throw new RangeError('The resulting date is out of range.');
+  const key = result.toISOString().slice(0, 10);
+  if (!isCalendarDate(key)) throw new RangeError('The resulting date is out of range.');
+  return key;
+}
+
+function daysUntil(dateString, today = dateKey()) {
+  return (calendarTime(dateString) - calendarTime(today)) / DAY_MS;
+}
+
+function progress(goal) {
+  if (goal.status === 'completed') return 100;
+  if (!goal.steps?.length) return 0;
+  return Math.round(goal.steps.filter(step => step.done === true).length / goal.steps.length * 100);
+}
+
+function deadlineInfo(goal, today = dateKey()) {
+  if (goal.status === 'completed') return { label: 'Completed', tone: 'success' };
+  if (!goal.deadline) return { label: 'No deadline', tone: 'muted' };
+  const days = daysUntil(goal.deadline, today);
+  if (days < 0) return { label: `${-days} ${days === -1 ? 'day' : 'days'} overdue`, tone: 'urgent' };
+  if (days === 0) return { label: 'Due today', tone: 'urgent' };
+  if (days === 1) return { label: 'Due tomorrow', tone: 'soon' };
+  if (days <= 7) return { label: `Due in ${days} days`, tone: 'soon' };
+  const date = new Date(calendarTime(goal.deadline));
+  const options = { month: 'short', day: 'numeric', timeZone: 'UTC' };
+  if (goal.deadline.slice(0, 4) !== today.slice(0, 4)) options.year = 'numeric';
+  return { label: new Intl.DateTimeFormat('en-US', options).format(date), tone: 'neutral' };
+}
+
+function safeUrl(value) {
+  if (typeof value !== 'string' || /[\u0000-\u001f\u007f]/.test(value)) return null;
+  try {
+    const url = new URL(value.trim());
+    return ['http:', 'https:'].includes(url.protocol) && url.hostname ? url.href : null;
+  } catch {
+    return null;
+  }
+}
+
+function exampleTimestamp(day, hour = 12) {
+  const [year, month, date] = day.split('-').map(Number);
+  const result = new Date(year, month - 1, date, hour);
+  result.setFullYear(year);
+  return result.toISOString();
+}
+
+function demoData() {
+  const today = dateKey();
+  const createdAt = exampleTimestamp(addDays(today, -8));
+  const updatedAt = new Date().toISOString();
+  const step = (title, done = false) => ({ id: uid(), title, done });
+  const resource = (title, url) => ({ id: uid(), title, url });
+  const goal = values => ({
+    id: uid(), title: '', description: '', category: 'Personal', priority: 'medium',
+    deadline: '', plannedDate: '', status: 'planned', steps: [], resources: [],
+    notes: '', createdAt, updatedAt, ...values,
+  });
+  const goals = [
+    goal({
+      title: 'Build confidence with React', category: 'Development', priority: 'high',
+      description: 'Go from following tutorials to building a small project independently.',
+      deadline: addDays(today, 10), plannedDate: today, status: 'in-progress',
+      steps: [step('Understand components and props', true), step('Practice state and events', true), step('Build a reusable custom hook'), step('Create a small project'), step('Review and explain what I built')],
+      resources: [resource('React learning guide', 'https://react.dev/learn')],
+      notes: 'Example goal — make this your own. Next up: a custom hook that saves a preference between visits.',
+    }),
+    goal({
+      title: 'Have my first Spanish conversation', category: 'Language', priority: 'medium',
+      description: 'Practice a little each day and work toward a relaxed, five-minute conversation.',
+      deadline: addDays(today, 21), plannedDate: addDays(today, 1), status: 'in-progress',
+      steps: [step('Learn greetings and introductions', true), step('Practice everyday questions'), step('Listen to a short conversation'), step('Speak for five minutes')],
+      resources: [resource('Spanish practice', 'https://www.spanishdict.com/')],
+      notes: 'Example goal. Prioritize speaking out loud over getting every word perfect.',
+    }),
+    goal({
+      title: 'Develop an eye for typography', category: 'Design', priority: 'low',
+      description: 'Learn how type, spacing, and hierarchy make a page feel clear and considered.',
+      deadline: addDays(today, 6), plannedDate: addDays(today, 2),
+      steps: [step('Study type anatomy and hierarchy'), step('Collect five layouts I admire'), step('Create a simple type scale'), step('Redesign a reading page')],
+      resources: [resource('Google Fonts knowledge', 'https://fonts.google.com/knowledge')],
+      notes: 'Example goal. Save interesting examples and write one sentence about why each works.',
+    }),
+    goal({
+      title: 'Create a reading habit that sticks', category: 'Personal', priority: 'medium',
+      description: 'Make room for ten quiet minutes of reading and one useful note each day.',
+      deadline: addDays(today, -2), plannedDate: addDays(today, -4), status: 'completed',
+      steps: [step('Choose a book I want to read', true), step('Set a small daily reading window', true), step('Try it for one week', true)],
+      notes: 'Example completed goal. A small, repeatable habit is a good place to begin.',
+    }),
+  ];
+  const sessions = [
+    { id: uid(), goalId: goals[0].id, minutes: 25, date: exampleTimestamp(addDays(today, -5)) },
+    { id: uid(), goalId: goals[1].id, minutes: 20, date: exampleTimestamp(addDays(today, -3)) },
+    { id: uid(), goalId: goals[3].id, minutes: 15, date: exampleTimestamp(addDays(today, -2)) },
+    { id: uid(), goalId: goals[0].id, minutes: 30, date: exampleTimestamp(addDays(today, -1)) },
+  ];
+  return { schemaVersion: 1, demo: true, goals, sessions, settings: { name: '', weeklyGoal: 5, theme: 'light' }, timer: null };
+}
+
+function initialData() {
+  const now = new Date().toISOString();
+  const goal = ({ title, category, deadline = '', steps }) => ({
+    id: uid(), title, description: '', category,
+    priority: deadline ? 'high' : 'medium', deadline, plannedDate: '', status: 'planned',
+    steps: steps.map(title => ({ id: uid(), title, done: false })),
+    resources: [], notes: '', createdAt: now, updatedAt: now,
+  });
+  const goals = [
+    goal({
+      title: 'TCP/IP networking fundamentals', category: 'Networking', deadline: '2026-10-11',
+      steps: ['Review TCP/IP layers', 'Practice IP addressing and subnetting', 'Compare TCP and UDP', 'Work through packet flow examples', 'Review and test recall'],
+    }),
+    goal({
+      title: 'load balancing', category: 'Networking',
+      steps: ['Review load balancing concepts', 'Compare common approaches', 'Work through a simple example', 'Review and test recall'],
+    }),
+    goal({
+      title: 'LAMP', category: 'Development',
+      steps: ['Review the parts of the LAMP stack', 'Trace how a request moves through the stack', 'Practice a basic setup', 'Review and test recall'],
+    }),
+    goal({
+      title: 'CDNs', category: 'Networking',
+      steps: ['Review CDN concepts', 'Explore caching and content delivery', 'Work through a request flow example', 'Review and test recall'],
+    }),
+    goal({
+      title: 'Linux', category: 'Development',
+      steps: ['Practice navigating files and directories', 'Review permissions and processes', 'Practice everyday shell commands', 'Review and test recall'],
+    }),
+    goal({
+      title: 'Discrete Structures II Catch-up (Lecture 7-11)', category: 'Mathematics', deadline: '2026-10-11',
+      steps: ['Lecture 7', 'Lecture 8', 'Lecture 9', 'Lecture 10', 'Lecture 11'],
+    }),
+    goal({
+      title: 'Statistical Inference for Data Science (1-3)', category: 'Data Science', deadline: '2026-10-11',
+      steps: ['Lecture 1', 'Lecture 2', 'Lecture 3'],
+    }),
+    goal({
+      title: 'Relational Algebra Homework', category: 'Databases', deadline: '2026-10-08',
+      steps: ['Review the assignment', 'Work through the problems', 'Check notation and results', 'Submit the homework'],
+    }),
+  ];
+  return { schemaVersion: 1, demo: false, goals, sessions: [], settings: { name: '', weeklyGoal: 5, theme: 'dark' }, timer: null };
+}
+
+function fail(path, message) {
+  throw new Error(`${path}: ${message}`);
+}
+
+function record(value, path, keys) {
+  if (!value || typeof value !== 'object' || Array.isArray(value) || ![Object.prototype, null].includes(Object.getPrototypeOf(value))) fail(path, 'must be an object.');
+  for (const key of Object.keys(value)) if (!keys.includes(key)) fail(path, `unknown field “${key}”.`);
+  for (const key of keys) if (!Object.hasOwn(value, key)) fail(`${path}.${key}`, 'is missing.');
+  return value;
+}
+
+function string(value, path, max, required = false) {
+  if (typeof value !== 'string') fail(path, 'must be text.');
+  const normalized = value.trim();
+  if (required && !normalized) fail(path, 'cannot be empty.');
+  if (normalized.length > max) fail(path, `must be at most ${max} characters.`);
+  return normalized;
+}
+
+function choice(value, path, allowed) {
+  if (!allowed.has(value)) fail(path, 'has an unsupported value.');
+  return value;
+}
+
+function boolean(value, path) {
+  if (typeof value !== 'boolean') fail(path, 'must be true or false.');
+  return value;
+}
+
+function array(value, path, max) {
+  if (!Array.isArray(value)) fail(path, 'must be a list.');
+  if (value.length > max) fail(path, `cannot contain more than ${max} items.`);
+  return value;
+}
+
+function calendarDate(value, path) {
+  const normalized = string(value, path, 10);
+  if (normalized && !isCalendarDate(normalized)) fail(path, 'must be a real date in YYYY-MM-DD format or empty.');
+  return normalized;
+}
+
+function timestamp(value, path) {
+  const normalized = string(value, path, 40, true);
+  const match = /^(\d{4}-\d{2}-\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.\d{1,3})?(Z|[+-](\d{2}):(\d{2}))$/.exec(normalized);
+  if (!match || !isCalendarDate(match[1]) || Number(match[2]) > 23 || Number(match[3]) > 59 || Number(match[4]) > 59 || (match[5] !== 'Z' && (Number(match[6]) > 14 || Number(match[7]) > 59 || (Number(match[6]) === 14 && Number(match[7]) !== 0))) || !Number.isFinite(Date.parse(normalized))) fail(path, 'must be a valid ISO timestamp with a timezone.');
+  return normalized;
+}
+
+function validateImport(data) {
+  record(data, 'Backup', ['schemaVersion', 'demo', 'goals', 'sessions', 'settings', 'timer']);
+  if (data.schemaVersion !== 1) fail('Backup.schemaVersion', 'this backup version is not supported.');
+  const demo = boolean(data.demo, 'Backup.demo');
+  const ids = new Set();
+  const id = (value, path) => {
+    const normalized = string(value, path, 120, true);
+    if (ids.has(normalized)) fail(path, 'IDs must be unique throughout the backup.');
+    ids.add(normalized);
+    return normalized;
+  };
+  const goals = array(data.goals, 'Goals', 500).map((input, index) => {
+    const path = `Goal ${index + 1}`;
+    record(input, path, ['id', 'title', 'description', 'category', 'priority', 'deadline', 'plannedDate', 'status', 'steps', 'resources', 'notes', 'createdAt', 'updatedAt']);
+    return {
+      id: id(input.id, `${path}.id`),
+      title: string(input.title, `${path}.title`, 160, true),
+      description: string(input.description, `${path}.description`, 3000),
+      category: string(input.category, `${path}.category`, 60, true),
+      priority: choice(input.priority, `${path}.priority`, PRIORITIES),
+      deadline: calendarDate(input.deadline, `${path}.deadline`),
+      plannedDate: calendarDate(input.plannedDate, `${path}.plannedDate`),
+      status: choice(input.status, `${path}.status`, STATUSES),
+      steps: array(input.steps, `${path}.steps`, 500).map((item, i) => {
+        const itemPath = `${path}.step ${i + 1}`;
+        record(item, itemPath, ['id', 'title', 'done']);
+        return { id: id(item.id, `${itemPath}.id`), title: string(item.title, `${itemPath}.title`, 300, true), done: boolean(item.done, `${itemPath}.done`) };
+      }),
+      resources: array(input.resources, `${path}.resources`, 100).map((item, i) => {
+        const itemPath = `${path}.resource ${i + 1}`;
+        record(item, itemPath, ['id', 'title', 'url']);
+        const url = safeUrl(string(item.url, `${itemPath}.url`, 2048, true));
+        if (!url) fail(`${itemPath}.url`, 'must be a complete http or https URL.');
+        return { id: id(item.id, `${itemPath}.id`), title: string(item.title, `${itemPath}.title`, 160, true), url };
+      }),
+      notes: string(input.notes, `${path}.notes`, 30_000),
+      createdAt: timestamp(input.createdAt, `${path}.createdAt`),
+      updatedAt: timestamp(input.updatedAt, `${path}.updatedAt`),
+    };
+  });
+  const goalIds = new Set(goals.map(goal => goal.id));
+  const sessions = array(data.sessions, 'Sessions', 10_000).map((input, index) => {
+    const path = `Session ${index + 1}`;
+    record(input, path, ['id', 'goalId', 'minutes', 'date']);
+    const goalId = input.goalId === null ? null : string(input.goalId, `${path}.goalId`, 120);
+    if (goalId && !goalIds.has(goalId)) fail(`${path}.goalId`, 'references a goal that is not in this backup.');
+    if (typeof input.minutes !== 'number' || !Number.isFinite(input.minutes) || input.minutes <= 0 || input.minutes > 1440) fail(`${path}.minutes`, 'must be greater than zero and at most 1440.');
+    return { id: id(input.id, `${path}.id`), goalId, minutes: input.minutes, date: timestamp(input.date, `${path}.date`) };
+  });
+  record(data.settings, 'Settings', ['name', 'weeklyGoal', 'theme']);
+  if (!Number.isInteger(data.settings.weeklyGoal) || data.settings.weeklyGoal < 1 || data.settings.weeklyGoal > 80) fail('Settings.weeklyGoal', 'must be a whole number from 1 to 80.');
+  const settings = {
+    name: string(data.settings.name, 'Settings.name', 80),
+    weeklyGoal: data.settings.weeklyGoal,
+    theme: choice(data.settings.theme, 'Settings.theme', new Set(['light', 'dark', 'system'])),
+  };
+  return { schemaVersion: 1, demo, goals, sessions, settings, timer: null };
+}
+
+function summarize(goals, sessions, today = dateKey()) {
+  const utcDay = new Date(calendarTime(today)).getUTCDay();
+  const monday = addDays(today, -((utcDay + 6) % 7));
+  const weeklyDays = Array.from({ length: 7 }, (_, i) => ({ date: addDays(monday, i), minutes: 0 }));
+  const minutesByDate = new Map();
+  for (const session of sessions) {
+    if (!Number.isFinite(session.minutes) || session.minutes <= 0) continue;
+    const date = new Date(session.date);
+    if (!Number.isFinite(date.getTime())) continue;
+    const key = dateKey(date);
+    minutesByDate.set(key, (minutesByDate.get(key) || 0) + session.minutes);
+  }
+  for (const day of weeklyDays) day.minutes = minutesByDate.get(day.date) || 0;
+  let streak = 0;
+  let cursor = minutesByDate.has(today) ? today : addDays(today, -1);
+  while (minutesByDate.has(cursor)) {
+    streak += 1;
+    cursor = addDays(cursor, -1);
+  }
+  const activeGoals = goals.filter(goal => goal.status !== 'completed' && goal.status !== 'archived');
+  return {
+    active: activeGoals.length,
+    completed: goals.filter(goal => goal.status === 'completed').length,
+    dueThisWeek: activeGoals.filter(goal => goal.deadline && daysUntil(goal.deadline, today) >= 0 && daysUntil(goal.deadline, today) <= 7).length,
+    focusedThisWeek: weeklyDays.reduce((total, day) => total + day.minutes, 0),
+    weeklyDays,
+    streak,
+  };
+}
+
+
+const STORAGE_KEY='still.learning.v1';
+const $=(s,root=document)=>root.querySelector(s);
+const $$=(s,root=document)=>[...root.querySelectorAll(s)];
+const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const iconPaths={overview:'M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z',book:'M12 5v16 M12 5C9 2 4 3 2 4v15c4-1 7-1 10 2 3-3 6-3 10-2V4c-2-1-7-2-10 1Z',calendar:'M4 5h16v16H4z M8 2v6 M16 2v6 M4 11h16',chart:'M4 20V10 M10 20V4 M16 20v-8 M22 20H2',settings:'M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z M12 2v3 M12 19v3 M2 12h3 M19 12h3 M5 5l2 2 M17 17l2 2 M5 19l2-2 M17 7l2-2',sun:'M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z M12 2v2 M12 20v2 M2 12h2 M20 12h2 M5 5l1 1 M18 18l1 1 M5 19l1-1 M18 6l1-1',moon:'M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10Z',arrow:'M5 12h14 M13 6l6 6-6 6',search:'M10 3a7 7 0 1 0 0 14 7 7 0 0 0 0-14 M15 15l6 6',clock:'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18 M12 7v5l3 2',check:'M5 12l4 4L19 6',close:'M6 6l12 12 M6 18 18 6',link:'M10 13a5 5 0 0 0 7 0l4-4a5 5 0 0 0-7-7l-3 3 M14 11a5 5 0 0 0-7 0l-4 4a5 5 0 0 0 7 7l3-3',trash:'M3 6h18 M9 6V3h6v3 M5 6l1 15h12l1-15 M10 10v7 M14 10v7',edit:'M4 16 16 4l4 4L8 20H4z M14 6l4 4',download:'M12 3v12 M7 10l5 5 5-5 M4 16v5h16v-5',play:'M8 4l12 8-12 8Z',pause:'M7 4v16 M17 4v16',leaf:'M5 19C0 3 12 3 21 3c0 12-4 20-16 16Z M5 19 16 8',chevron:'M9 5l7 7-7 7',spark:'M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3Z'};
+const icon=(name,extra='')=>`<svg class="icon ${extra}" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${iconPaths[name]||iconPaths.book}"/></svg>`;
+let storageWarning='';
+let state=initialData();
+let revision=0,cloudReady=false,dirty=false,syncing=false,remoteConflict=null,changeGeneration=0,saveTimeout=null,refreshing=false;
+let cacheKey=STORAGE_KEY;
+let corruptStorage=false;
+let view=['overview','learning','calendar','insights','settings'].includes(location.hash.slice(1))?location.hash.slice(1):'overview';
+let selectedDate=dateKey(),calendarMonth=dateKey().slice(0,7),filter='active',category='all',query='',sort='deadline',detailId=null;
+
+const navigation=[['overview','overview','Overview'],['learning','book','My learning'],['calendar','calendar','Calendar'],['insights','chart','Progress']];
+const categoryColors=['#779681','#b58a59','#858ab0','#b47778','#659b9f','#a59965'];
+const colorFor=str=>categoryColors[[...str].reduce((a,c)=>a+c.charCodeAt(0),0)%categoryColors.length];
+const activeGoals=()=>state.goals.filter(g=>!['completed','archived'].includes(g.status));
+const goalById=id=>state.goals.find(g=>g.id===id);
+const readableDate=(d,opts={month:'short',day:'numeric'})=>d?new Intl.DateTimeFormat(undefined,opts).format(new Date(d+'T12:00:00')):'No date';
+const minutesText=n=>n>0&&n<1?'under 1m':n>=60?`${Math.floor(n/60)}h${Math.round(n%60)?` ${Math.round(n%60)}m`:''}`:`${Math.round(n)}m`;
+const statusText=s=>({'in-progress':'In progress',planned:'Planned',completed:'Completed',archived:'Archived'}[s]||s);
+function validTimer(t){return t&&Number.isFinite(t.totalSeconds)&&t.totalSeconds>=60&&t.totalSeconds<=7200&&Number.isFinite(t.remainingSeconds)&&t.remainingSeconds>=0&&t.remainingSeconds<=t.totalSeconds&&(t.startedAt===null||Number.isFinite(t.startedAt))&&typeof t.goalId==='string';}
+function emptyTimer(minutes=25,goalId=''){return{goalId,totalSeconds:minutes*60,remainingSeconds:minutes*60,startedAt:null};}
+if(!state.timer)state.timer=emptyTimer();
+function save(){changeGeneration++;dirty=true;cacheDraft();updateSyncLabel();clearTimeout(saveTimeout);saveTimeout=setTimeout(pushCloud,450);return true;}
+function cacheDraft(){try{localStorage.setItem(cacheKey,JSON.stringify({revision,state,dirty}));}catch{/* The remote save still proceeds when local browser storage is unavailable. */}}
+function updateSyncLabel(){const label=remoteConflict?'Sync needs attention':!cloudReady?'Opening local preview…':syncing?'Saving…':dirty?'Waiting to sync…':'Saved in this browser';$('#save-status').innerHTML=`<span class="${remoteConflict?'error-dot':''}"></span>${label}`;$('#save-status').title=remoteConflict?'Open Settings to review changes from another device.':'Your private learning workspace';}
+function restoreState(data){const clean=validateImport(data);clean.timer=validTimer(data.timer)?data.timer:emptyTimer();return clean;}
+async function requestCloud(method='GET',body){
+  const key='still.preview.v1.data';
+  let saved;try{saved=JSON.parse(localStorage.getItem(key)||'null');}catch{}
+  if(method==='GET')return{response:{status:200,ok:true},result:{state:saved?.state||null,revision:saved?.revision||0,userKey:'local-preview'}};
+  if((saved?.revision||0)!==body.revision)return{response:{status:409,ok:false},result:{...saved,error:'conflict'}};
+  const result={state:body.state,revision:body.revision+1};
+  localStorage.setItem(key,JSON.stringify(result));
+  return{response:{status:200,ok:true},result};
+}
+async function pushCloud(){if(!cloudReady||!dirty||syncing||remoteConflict)return;syncing=true;updateSyncLabel();const generation=changeGeneration,payload=JSON.stringify(state);try{const {response,result}=await requestCloud('PUT',{state:JSON.parse(payload),revision});if(response.status===409){remoteConflict=result;storageWarning='This workspace changed on another device. Your unsynced edits are preserved. Open Settings to choose which version to keep.';render();toast('Another device has newer changes. Review them in Settings.','Settings',()=>setView('settings'));return;}revision=result.revision;if(generation===changeGeneration)dirty=false;const hadWarning=!!storageWarning;storageWarning='';cacheDraft();if(hadWarning)render();}catch(err){storageWarning='Changes are saved on this device and waiting to sync. Check your connection, then retry from Settings.';toast(err.message,'Retry',()=>pushCloud());}finally{syncing=false;updateSyncLabel();if(dirty&&!remoteConflict&&generation!==changeGeneration)setTimeout(pushCloud,100);}}
+async function refreshCloud(){if(!cloudReady||dirty||syncing||refreshing||$$('dialog[open]').length)return;refreshing=true;try{const {result}=await requestCloud();if(result.state&&result.revision>revision){state=restoreState(result.state);revision=result.revision;changeGeneration++;cacheDraft();render();}}catch{/* Background retries stay quiet until a save needs attention. */}finally{refreshing=false;}}
+async function bootCloud(){const gate=document.createElement('div');gate.className='connection-gate';gate.innerHTML='<div><span class="loading-mark">s•</span><h2>Opening your learning space…</h2><p>A little structure. A lot of possibility.</p></div>';document.body.append(gate);try{const {result}=await requestCloud();revision=result.revision;cacheKey=STORAGE_KEY+'.'+(result.userKey||'owner');let cached;try{cached=JSON.parse(localStorage.getItem(cacheKey)||'null');}catch{}state=result.state?restoreState(result.state):initialData();if(cached?.dirty){const draft=restoreState(cached.state);if(cached.revision===revision){state=draft;dirty=true;}else{state=draft;dirty=true;remoteConflict=result;storageWarning='This device has unsynced edits and a newer version exists online. Review the versions in Settings.';}}cloudReady=true;gate.remove();render();if(!result.state||dirty){dirty=true;await pushCloud();}updateSyncLabel();}catch(err){gate.innerHTML=`<div><span class="loading-mark">s•</span><h2>Let’s reconnect.</h2><p>${esc(err.message)}</p><a class="button primary" href="/signin-with-chatgpt?return_to=%2F" target="_top">Sign in with ChatGPT</a><button class="button secondary" id="retry-connection">Try again</button></div>`;$('#retry-connection').onclick=()=>{gate.remove();bootCloud();};}}
+function toast(message,actionLabel,action){const generation=changeGeneration,el=document.createElement('div');el.className='toast';el.innerHTML=`<span>${esc(message)}</span>${actionLabel?`<button>${esc(actionLabel)}</button>`:''}`;if(actionLabel)$('button',el).onclick=()=>{if(actionLabel==='Undo'&&generation!==changeGeneration){toast('Undo expired because you made newer changes. Those changes have been kept.');}else action?.();el.remove();};$('#toasts').append(el);setTimeout(()=>el.remove(),actionLabel?10000:5500);}
+function setView(next){view=next;location.hash=next;render();window.scrollTo({top:0,behavior:'instant'});}
+function touch(g){g.updatedAt=new Date().toISOString();}
+function applyTheme(){document.documentElement.dataset.theme=state.settings.theme||'dark';$('#theme-button').innerHTML=icon(state.settings.theme==='dark'?'sun':'moon');$('#theme-button').setAttribute('aria-label',state.settings.theme==='dark'?'Use light theme':'Use dark theme');}
+function render(){
+  if(!validTimer(state.timer))state.timer=emptyTimer();
+  applyTheme();$('#navigation').innerHTML=navigation.map(([id,i,label])=>`<button class="nav-item ${view===id?'active':''}" data-view="${id}" ${view===id?'aria-current="page"':''}>${icon(i)}<span>${label}</span>${id==='learning'?`<span class="nav-count">${activeGoals().length}</span>`:''}</button>`).join('');
+  $('#settings-nav').innerHTML=icon('settings')+'<span>Settings<span class="desktop-only"> & backup</span></span>';$('#settings-nav').classList.toggle('active',view==='settings');
+  $('#current-view').textContent=navigation.find(n=>n[0]===view)?.[2]||'Settings';$('#today-label').textContent=readableDate(dateKey(),{weekday:'short',month:'short',day:'numeric'});
+  $('#page').innerHTML=(state.demo?demoBanner():'')+(storageWarning?`<div class="storage-warning">${esc(storageWarning)} <button class="text-link" data-view="settings">Open settings</button></div>`:'')+({overview:renderOverview,learning:renderLearning,calendar:renderCalendar,insights:renderInsights,settings:renderSettings}[view])();
+  updateTimerUI();updateSyncLabel();
+}
+function demoBanner(){return`<div class="demo-banner"><span>${icon('spark')} <span>You’re exploring an example workspace. Make room for your own next chapter.</span></span><button data-action="clear-demo">Start fresh ${icon('arrow')}</button></div>`;}
+function heading(eyebrow,title,subtitle,action=''){return`<div class="page-heading"><div><div class="eyebrow">${eyebrow}</div><h1>${title}</h1><p>${subtitle}</p></div>${action?`<div class="heading-actions">${action}</div>`:''}</div>`;}
+function renderOverview(){
+  const stats=summarize(state.goals,state.sessions);const active=activeGoals().sort(byDeadline);const next=active.find(g=>g.plannedDate===dateKey())||active.find(g=>g.status==='in-progress')||active[0];
+  const completedSteps=state.goals.filter(g=>g.status!=='archived').flatMap(g=>g.steps).filter(s=>s.done).length;
+  const name=state.settings.name?`, ${esc(state.settings.name)}`:'';
+  return heading('YOUR LEARNING, AT YOUR PACE',`Your next chapter${name}.`,'A clear plan. A little focus. One step closer to understanding.')+
+  `<div class="stats-grid"><div class="stat"><div><label>Learning in motion</label><strong>${stats.active}<small> active goals</small></strong></div><span class="stat-icon">${icon('book')}</span></div><div class="stat"><div><label>Focus this week</label><strong>${minutesText(stats.focusedThisWeek)}<small> / ${state.settings.weeklyGoal}h goal</small></strong></div><span class="stat-icon">${icon('clock')}</span></div><div class="stat"><div><label>Steps forward</label><strong>${completedSteps}<small> steps completed</small></strong></div><span class="stat-icon">${icon('leaf')}</span></div></div>
+  <div class="dashboard-grid"><div class="main-column"><div class="focus-banner"><div class="focus-copy"><span class="eyebrow">${icon('spark')} A MOMENT FOR WHAT MATTERS</span><h2>${next?'Your next small step.':'Your next chapter starts here.'}</h2><p>${next?esc(next.steps.find(s=>!s.done)?.title||next.title):'Something you’ve always wanted to understand. A skill you’re ready to build. Give it a home.'}</p><button class="button" ${next?`data-action="focus-goal" data-id="${esc(next.id)}"`:'data-action="new-goal"'}>${icon(next?'play':'book')}${next?'Let’s focus':'Add your first goal'}${icon('arrow')}</button>${next?`<div class="focus-meta">${esc(next.title)} <span>·</span> ${esc(deadlineInfo(next).label)}</div>`:''}</div><div class="orbital" aria-hidden="true"><span></span><span></span><span></span><span></span><i></i></div></div>
+  <div class="section-heading"><div><h2>Keep the curiosity going</h2><p>Your active learning goals, all in one place.</p></div><button class="text-link" data-view="learning">View all ${icon('arrow')}</button></div>
+  <div class="goal-grid">${active.slice(0,4).map(goalCard).join('')||emptyState('A blank page. Endless possibilities.','Add one thing you want to learn. You can break it into smaller steps as you go.','Add a learning goal')}</div></div>
+  <div class="side-column">${upcomingPanel()}${timerPanel()}<div class="quote-note">You don’t have to learn it all today.<br>Just a little more than yesterday.<span>KEEP YOUR CURIOSITY CLOSE</span></div></div></div>`;
+}
+function byDeadline(a,b){return(a.deadline||'9999').localeCompare(b.deadline||'9999')||a.title.localeCompare(b.title);}
+function goalCard(g){const pct=progress(g),due=deadlineInfo(g);return`<article class="goal-card" style="--category-color:${colorFor(g.category)}"><div class="card-top"><span class="category"><i class="category-dot"></i>${esc(g.category)}</span><span class="status-pill ${g.status}">${statusText(g.status)}</span></div><button class="card-open" data-action="open-goal" data-id="${esc(g.id)}"><h3>${esc(g.title)}</h3><p class="card-description">${esc(g.description||(g.steps.find(s=>!s.done)?'Next up: '+g.steps.find(s=>!s.done).title:'A little further than before. Keep going at your own pace.'))}</p></button><div class="progress-row"><span>${g.steps.length?`${g.steps.filter(s=>s.done).length} of ${g.steps.length} steps`:'Ready when you are'}</span><strong>${pct}%</strong></div><div class="progress-track" role="progressbar" aria-label="${esc(g.title)} progress" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"><i style="width:${pct}%"></i></div><div class="card-footer"><span class="deadline ${due.tone||''}">${icon('calendar')}${esc(due.label)}</span><span class="priority ${g.priority}"><i></i>${g.priority==='high'?'High priority':g.priority==='low'?'Low priority':'Medium'}</span></div></article>`;}
+function emptyState(title,copy,action='New learning goal'){return`<div class="empty-state"><span class="empty-symbol">${icon('leaf')}</span><h3>${title}</h3><p>${copy}</p><button class="button primary" data-action="new-goal">＋ ${action}</button></div>`;}
+function upcomingPanel(){const due=activeGoals().filter(g=>g.deadline).sort(byDeadline).slice(0,4);return`<section class="panel"><div class="panel-heading"><h2>On the horizon</h2><button class="icon-button" aria-label="Open calendar" data-view="calendar">${icon('arrow')}</button></div><div class="upcoming-list">${due.map(g=>{const info=deadlineInfo(g);return`<button class="upcoming-item" data-action="open-goal" data-id="${esc(g.id)}"><span class="date-block ${info.tone||''}"><small>${readableDate(g.deadline,{month:'short'})}</small><strong>${Number(g.deadline.slice(8))}</strong></span><span class="upcoming-body"><strong>${esc(g.title)}</strong><small class="${info.tone||''}">${esc(info.label)}</small></span></button>`;}).join('')||'<p class="empty-small">No deadlines ahead. Add a date to a goal when you’re ready.</p>'}</div></section>`;}
+function timerPanel(){const t=state.timer;return`<section class="panel timer-panel" id="focus-panel"><div class="panel-heading"><h2>${icon('clock')} A little focus</h2><span class="quiet-label">ONE THING AT A TIME</span></div><div class="timer-display" aria-live="off" role="timer">25:00</div><div class="timer-options">${[15,25,50].map(m=>`<button class="chip ${t.totalSeconds===m*60?'active':''}" data-duration="${m}">${m} min</button>`).join('')}</div><label class="sr-only" for="timer-goal">Focus on a learning goal</label><select id="timer-goal" ${t.startedAt||t.remainingSeconds<t.totalSeconds?'disabled':''}><option value="">Free focus</option>${activeGoals().map(g=>`<option value="${esc(g.id)}" ${t.goalId===g.id?'selected':''}>${esc(g.title)}</option>`).join('')}</select><div class="timer-buttons"><button class="button primary" data-action="timer-toggle">${icon(t.startedAt?'pause':'play')} ${t.startedAt?'Pause':t.remainingSeconds<t.totalSeconds?'Resume':'Start session'}</button><button class="icon-button" data-action="timer-reset" aria-label="Reset focus timer">↻</button></div><button class="text-link timer-save" data-action="timer-save" ${remaining()===t.totalSeconds?'disabled':''}>Finish & save session</button><p class="timer-hint">Time adds up. Your progress saves automatically.</p></section>`;}
+function filteredGoals(){let list=state.goals.filter(g=>filter==='all'?g.status!=='archived':filter==='active'?!['completed','archived'].includes(g.status):g.status===filter);if(category!=='all')list=list.filter(g=>g.category===category);if(query){const q=query.toLowerCase();list=list.filter(g=>[g.title,g.description,g.notes,g.category,...g.steps.map(s=>s.title)].join(' ').toLowerCase().includes(q));}return list.sort(sort==='title'?(a,b)=>a.title.localeCompare(b.title):sort==='progress'?(a,b)=>progress(b)-progress(a):sort==='priority'?(a,b)=>['high','medium','low'].indexOf(a.priority)-['high','medium','low'].indexOf(b.priority):sort==='recent'?(a,b)=>b.updatedAt.localeCompare(a.updatedAt):byDeadline);}
+function renderLearning(){const list=filteredGoals();return heading('MAKE SPACE FOR POSSIBILITY','Your learning library.','Everything you want to know, become, or get a little better at.',`<button class="button primary" data-action="new-goal">＋ Add a goal</button>`)+
+  `<div class="learning-toolbar"><label class="search-field">${icon('search')}<input type="search" id="goal-search" placeholder="Find a goal, note, or step…" value="${esc(query)}" aria-label="Search learning goals"></label><select id="category-filter" aria-label="Filter by category"><option value="all">All categories</option>${[...new Set(state.goals.map(g=>g.category))].sort().map(c=>`<option ${category===c?'selected':''}>${esc(c)}</option>`).join('')}</select><select id="goal-sort" aria-label="Sort goals">${[['deadline','Nearest deadline'],['recent','Recently updated'],['progress','Most progress'],['priority','Priority'],['title','Alphabetical']].map(([v,l])=>`<option value="${v}" ${sort===v?'selected':''}>${l}</option>`).join('')}</select></div><div class="filter-row"><div class="tabs" aria-label="Goal status">${[['active','Active'],['planned','Planned'],['in-progress','In progress'],['completed','Completed'],['archived','Archived'],['all','All goals']].map(([f,l])=>`<button class="tab ${filter===f?'active':''}" data-filter="${f}" aria-pressed="${filter===f}">${l}</button>`).join('')}</div><span class="result-count" id="result-count">${list.length} ${list.length===1?'goal':'goals'}</span></div><div class="goal-grid full" id="learning-results">${learningResults(list)}</div>`;}
+function learningResults(list){return list.map(goalCard).join('')||emptyState(query||category!=='all'?'Nothing here just yet.':'Make room for your next idea.',query||category!=='all'?'Try a different search or category. Your next idea might still be waiting to be added.':'Add something you’re curious about and take the first small step.');}
+function refreshResults(){const list=filteredGoals();$('#learning-results').innerHTML=learningResults(list);$('#result-count').textContent=`${list.length} ${list.length===1?'goal':'goals'}`;}
+function eventsOn(day){return activeGoals().flatMap(g=>[...(g.deadline===day?[{goal:g,type:'deadline'}]:[]),...(g.plannedDate===day?[{goal:g,type:'planned'}]:[])]);}
+function renderCalendar(){const first=calendarMonth+'-01',d=new Date(first+'T12:00:00'),offset=(d.getDay()+6)%7,start=addDays(first,-offset);const days=Array.from({length:42},(_,i)=>addDays(start,i));const events=eventsOn(selectedDate);return heading('A LITTLE STRUCTURE GOES A LONG WAY','Time for what matters.','Give your ambitions a date. Leave a little room to be human.')+
+  `<div class="calendar-layout"><section class="panel calendar-panel"><div class="calendar-toolbar"><h2>${readableDate(first,{month:'long',year:'numeric'})}</h2><div><button class="button ghost small" data-action="calendar-today">Today</button><button class="icon-button" data-month="-1" aria-label="Previous month">‹</button><button class="icon-button" data-month="1" aria-label="Next month">›</button></div></div><div class="calendar-weekdays">${['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(x=>`<span>${x}</span>`).join('')}</div><div class="calendar-grid">${days.map(day=>{const e=eventsOn(day);return`<button class="calendar-day ${day.slice(0,7)!==calendarMonth?'outside':''} ${day===dateKey()?'today':''} ${day===selectedDate?'selected':''}" data-date="${day}" aria-label="${readableDate(day,{weekday:'long',month:'long',day:'numeric'})}, ${e.length} events" aria-pressed="${day===selectedDate}"><span class="day-number">${Number(day.slice(8))}</span>${e.slice(0,2).map(v=>`<span class="calendar-event ${v.type}-event">${esc(v.goal.title)}</span>`).join('')}${e.length>2?`<small>+${e.length-2} more</small>`:''}</button>`;}).join('')}</div><div class="calendar-legend"><span><i class="deadline-dot"></i>Deadline</span><span><i class="planned-dot"></i>Planned learning day</span></div></section><aside class="calendar-aside"><section class="panel"><div class="eyebrow">${selectedDate===dateKey()?'TODAY':'YOUR DAY'}</div><h2>${readableDate(selectedDate,{weekday:'long',month:'short',day:'numeric'})}</h2><div class="day-agenda">${events.map(({goal:g,type})=>`<button class="agenda-item" data-action="open-goal" data-id="${esc(g.id)}"><span class="category">${type==='deadline'?'Finish by today':'Make a little progress'}</span><strong>${esc(g.title)}</strong><small>${esc(g.category)} · ${progress(g)}% complete</small></button>`).join('')||'<div class="empty-small">A little breathing room.<br>No learning planned for this day.</div>'}</div><button class="button secondary" data-action="new-on-date" data-date="${selectedDate}">＋ Plan something</button></section><p class="calendar-explainer">A <strong>deadline</strong> is when you want to finish. A <strong>learning day</strong> is when you plan to work on it. You can set either, or both.</p></aside></div>`;}
+function renderInsights(){const s=summarize(state.goals,state.sessions),goalMinutes=state.settings.weeklyGoal*60,ratio=Math.min(100,Math.round(s.focusedThisWeek/goalMinutes*100));const max=Math.max(60,...s.weeklyDays.map(d=>d.minutes));const categories=[...new Set(state.goals.filter(g=>g.status!=='archived').map(g=>g.category))];const recent=[...state.sessions].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,8);return heading('PROGRESS OVER PERFECTION','Look how far you’ve come.','Every focused minute and finished step is a little investment in you.')+
+  `<div class="stats-grid"><div class="stat"><div><label>Goals completed</label><strong>${s.completed}<small> things learned</small></strong></div><span class="stat-icon">${icon('check')}</span></div><div class="stat"><div><label>Current rhythm</label><strong>${s.streak}<small> day${s.streak===1?'':'s'} in a row</small></strong></div><span class="stat-icon">${icon('spark')}</span></div><div class="stat"><div><label>All-time focus</label><strong>${minutesText(state.sessions.reduce((a,v)=>a+v.minutes,0))}<small> well spent</small></strong></div><span class="stat-icon">${icon('clock')}</span></div></div>
+  <div class="insights-grid"><section class="panel"><div class="panel-heading"><div><h2>Your week in focus</h2><p>${minutesText(s.focusedThisWeek)} of your ${state.settings.weeklyGoal}h weekly intention</p></div><span class="status-pill in-progress">${ratio}%</span></div><div class="bar-chart">${s.weeklyDays.map(d=>`<div class="bar-column"><span>${d.minutes?minutesText(d.minutes):'—'}</span><div class="bar-space"><div class="bar ${d.date===dateKey()?'current':''}" style="height:${Math.max(3,d.minutes/max*100)}%" title="${esc(d.date)}: ${d.minutes} minutes"></div></div><small>${readableDate(d.date,{weekday:'short'})}</small></div>`).join('')}</div><div class="progress-track"><i style="width:${ratio}%"></i></div><p class="insight-caption">${ratio>=100?'You made time for your weekly intention. Keep going at your own pace.':`${minutesText(Math.max(0,goalMinutes-s.focusedThisWeek))} to your weekly intention. A small session counts.`}</p></section><section class="panel"><div class="panel-heading"><h2>Growing in different directions</h2></div><div class="category-breakdown">${categories.map(c=>{const goals=state.goals.filter(g=>g.category===c&&g.status!=='archived'),pct=Math.round(goals.reduce((a,g)=>a+progress(g),0)/goals.length);return`<div class="category-row"><div><span class="category"><i class="category-dot" style="background:${colorFor(c)}"></i>${esc(c)}</span><strong>${pct}%</strong></div><div class="progress-track"><i style="width:${pct}%;background:${colorFor(c)}"></i></div><small>${goals.length} ${goals.length===1?'goal':'goals'} · average progress</small></div>`;}).join('')||'<p class="empty-small">Your learning categories will grow here as you add goals.</p>'}</div></section><section class="panel recent-panel"><div class="panel-heading"><h2>Time well spent</h2><span class="quiet-label">RECENT SESSIONS</span></div>${recent.length?`<div class="session-list">${recent.map(s=>`<div class="session-row"><span class="session-icon">${icon('clock')}</span><div><strong>${esc(goalById(s.goalId)?.title||'Free focus')}</strong><small>${new Intl.DateTimeFormat(undefined,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(new Date(s.date))}</small></div><span>${minutesText(s.minutes)}</span></div>`).join('')}</div>`:'<p class="empty-small">Your first focus session is waiting. Start the timer from Overview and make a little time for yourself.</p>'}</section></div>`;}
+function renderSettings(){return heading('MAKE YOURSELF AT HOME','A space that feels like you.','Set your pace, keep a backup, and make this space your own.')+`<div class="settings-grid"><section class="panel"><div class="panel-heading"><h2>Your preferences</h2></div><form id="settings-form"><div class="field"><label for="display-name">What should we call you?</label><input id="display-name" name="name" maxlength="40" value="${esc(state.settings.name)}" placeholder="Your first name"></div><div class="field-row"><div class="field"><label for="weekly-goal">Weekly focus intention</label><select id="weekly-goal" name="weeklyGoal">${[...new Set([1,2,3,5,7,10,15,20,state.settings.weeklyGoal])].sort((a,b)=>a-b).map(n=>`<option value="${n}" ${state.settings.weeklyGoal===n?'selected':''}>${n} ${n===1?'hour':'hours'} per week</option>`).join('')}</select></div><div class="field"><label for="theme-select">Appearance</label><select id="theme-select" name="theme"><option value="light" ${state.settings.theme!=='dark'?'selected':''}>Warm light</option><option value="dark" ${state.settings.theme==='dark'?'selected':''}>Quiet dark</option></select></div></div><p class="field-help">An intention is a gentle guide. You can change it whenever life changes.</p><button class="button primary" type="submit">Save preferences</button></form></section><section class="panel"><div class="panel-heading"><h2>Your data, in your hands</h2>${icon('download')}</div><p class="settings-copy">This is a <strong>local preview</strong>. Goals, notes, and sessions stay in this browser. Cross-device saving will be available after the private website is published.</p><p class="settings-copy">Export a backup before clearing browser data. You can import this backup into the hosted site when publishing is available.</p><div class="backup-actions"><button class="button secondary" data-action="export">${icon('download')} Export backup</button><button class="button secondary" data-action="import">Import backup</button></div>${corruptStorage?'<button class="button secondary" data-action="recovery">Download unreadable saved data</button><button class="button danger" data-action="reset-corrupt">Reset unreadable storage</button>':''}<div class="sync-controls"><button class="button secondary small" data-action="retry-sync">Retry sync</button>${remoteConflict?'<button class="button secondary small" data-action="use-cloud">Use latest synced copy</button><button class="button secondary small" data-action="use-local">Keep this device’s copy</button>':''}</div><div class="backup-details">${state.goals.length} goals · ${state.sessions.length} focus sessions · JSON format</div></section><section class="panel settings-wide"><div class="panel-heading"><div><h2>${state.demo?'Ready for your own chapter?':'A fresh start'}</h2><p>${state.demo?'Clear the example goals and sessions, and add something that matters to you.':'Clear all goals and sessions. Download a backup first if you’d like to keep them.'}</p></div><button class="button ${state.demo?'secondary':'danger'}" data-action="${state.demo?'clear-demo':'clear-all'}">${state.demo?'Start fresh':'Clear workspace'}</button></div></section></div><div class="made-for-you">${icon('leaf')} Still — a little structure, a lot of possibility.</div>`;}
+
+function openGoalForm(id=null,plannedDate=''){
+  const g=id?goalById(id):null;if(id&&!g)return;$('#detail-modal').close();
+  $('#goal-modal').innerHTML=`<form id="goal-form" data-id="${esc(id||'')}"><div class="modal-header"><div><div class="eyebrow">${g?'A LITTLE FINE-TUNING':'FOLLOW YOUR CURIOSITY'}</div><h2 id="goal-modal-title">${g?'Edit your learning goal':'What would you like to learn?'}</h2></div><button type="button" class="icon-button" data-close="goal-modal" aria-label="Close goal form">${icon('close')}</button></div><div class="modal-body"><div class="field"><label for="goal-title">Learning goal <span>*</span></label><input id="goal-title" name="title" required maxlength="120" placeholder="e.g. Build my first website" value="${esc(g?.title||'')}" autofocus></div><div class="field"><label for="goal-description">A little context <span class="optional">optional</span></label><textarea id="goal-description" name="description" rows="2" maxlength="600" placeholder="What do you want to be able to do? Why does it matter?">${esc(g?.description||'')}</textarea></div><div class="field-row"><div class="field"><label for="goal-category">Category</label><input id="goal-category" name="category" list="categories" maxlength="40" value="${esc(g?.category||'Personal')}" required><datalist id="categories">${[...new Set(['Development','Language','Design','Personal','Career','Reading',...state.goals.map(x=>x.category)])].map(c=>`<option value="${esc(c)}"></option>`).join('')}</datalist></div><div class="field"><label for="goal-priority">Priority</label><select name="priority" id="goal-priority">${['low','medium','high'].map(p=>`<option value="${p}" ${(g?.priority||'medium')===p?'selected':''}>${p[0].toUpperCase()+p.slice(1)}</option>`).join('')}</select></div></div><div class="field-row"><div class="field"><label for="goal-deadline">Finish by <span class="optional">optional</span></label><input type="date" name="deadline" id="goal-deadline" min="1900-01-01" max="2100-12-31" value="${esc(g?.deadline||'')}"><small>A deadline to work toward.</small></div><div class="field"><label for="goal-planned">Next learning day <span class="optional">optional</span></label><input type="date" name="plannedDate" id="goal-planned" min="1900-01-01" max="2100-12-31" value="${esc(g?.plannedDate||plannedDate)}"><small>When you’ll make time for it.</small></div></div><div class="field"><label for="goal-state">Where are you starting?</label><select id="goal-state" name="status">${['planned','in-progress','completed',...(g?.status==='archived'?['archived']:[])].map(s=>`<option value="${s}" ${(g?.status||'planned')===s?'selected':''}>${statusText(s)}</option>`).join('')}</select></div>${!g?'<div class="field"><label for="goal-steps">Break it into small steps <span class="optional">optional</span></label><textarea id="goal-steps" name="steps" rows="3" maxlength="10000" placeholder="One step per line&#10;Learn the basics&#10;Try it myself&#10;Make a small project"></textarea><small>You can add and rearrange steps later.</small></div>':''}</div><div class="modal-footer"><span class="field-help">Small and specific is a lovely place to start.</span><button type="button" class="button ghost" data-close="goal-modal">Cancel</button><button type="submit" class="button primary">${g?'Save changes':'Create goal'} ${icon('arrow')}</button></div></form>`;
+  $('#goal-modal').showModal();
+}
+function openDetail(id){const g=goalById(id);if(!g)return;detailId=id;renderDetail();if(!$('#detail-modal').open)$('#detail-modal').showModal();}
+function renderDetail(){const g=goalById(detailId);if(!g){$('#detail-modal').close();return;}const pct=progress(g),due=deadlineInfo(g),sessions=state.sessions.filter(s=>s.goalId===g.id);$('#detail-modal').innerHTML=`<div class="modal-header"><div><span class="category" style="--category-color:${colorFor(g.category)}"><i class="category-dot"></i>${esc(g.category)}</span><h2 id="detail-title">${esc(g.title)}</h2></div><button class="icon-button" data-close="detail-modal" aria-label="Close goal details">${icon('close')}</button></div><div class="modal-body"><p class="detail-description">${esc(g.description||'Give yourself a little time. Every step counts.')}</p><div class="detail-meta"><span class="status-pill ${g.status}">${statusText(g.status)}</span><span class="deadline ${due.tone||''}">${icon('calendar')}${esc(due.label)}</span><span class="priority ${g.priority}"><i></i>${g.priority} priority</span>${g.plannedDate?`<span>${icon('clock')} Learning day: ${readableDate(g.plannedDate)}</span>`:''}</div><div class="detail-progress"><div class="progress-row"><span>${g.steps.filter(s=>s.done).length} of ${g.steps.length} steps completed</span><strong>${pct}%</strong></div><div class="progress-track"><i style="width:${pct}%"></i></div></div><section class="detail-section"><div class="section-heading"><h3>Your next small steps</h3><small>${g.steps.length?'One at a time.':'Start small.'}</small></div><div class="checklist">${g.steps.map((s,i)=>`<div class="check-item ${s.done?'checked':''}"><label><input type="checkbox" data-step="${esc(s.id)}" ${s.done?'checked':''}><span>${esc(s.title)}</span></label><div class="step-controls"><button class="icon-button tiny" data-action="step-up" data-step-id="${esc(s.id)}" aria-label="Move step up" ${i===0?'disabled':''}>↑</button><button class="icon-button tiny" data-action="step-down" data-step-id="${esc(s.id)}" aria-label="Move step down" ${i===g.steps.length-1?'disabled':''}>↓</button><button class="icon-button tiny" data-action="delete-step" data-step-id="${esc(s.id)}" aria-label="Delete step">${icon('close')}</button></div></div>`).join('')}</div><form class="step-add" id="step-form"><input name="step" aria-label="New learning step" maxlength="300" required placeholder="Add a small, doable step…"><button class="button secondary small" type="submit">Add step</button></form></section><section class="detail-section"><div class="section-heading"><h3>Good things to come back to</h3><small>Resources</small></div><div class="resource-list">${g.resources.map(r=>`<div class="resource-item">${icon('link')}<a href="${esc(safeUrl(r.url)||'#')}" target="_blank" rel="noopener noreferrer">${esc(r.title||r.url)} ${icon('arrow')}</a><button class="icon-button tiny" data-action="delete-resource" data-resource-id="${esc(r.id)}" aria-label="Remove resource">${icon('close')}</button></div>`).join('')}</div><form id="resource-form" class="resource-form"><input type="text" name="label" aria-label="Resource title" maxlength="160" placeholder="Title (optional)"><input type="url" name="url" aria-label="Resource URL" maxlength="2000" required placeholder="https://…"><button type="submit" class="button secondary small">Add link</button></form></section><section class="detail-section"><div class="section-heading"><h3>Notes to your future self</h3><span id="notes-status" class="quiet-label">SAVE WHEN READY</span></div><textarea class="note-area" id="goal-notes" aria-label="Learning notes" rows="4" maxlength="20000" placeholder="Ideas, breakthroughs, questions, and things worth remembering…">${esc(g.notes)}</textarea><button class="button secondary small notes-save" data-action="save-notes">Save notes</button></section><div class="goal-time-summary">${icon('clock')} ${minutesText(sessions.reduce((a,s)=>a+s.minutes,0))} focused · ${sessions.length} saved ${sessions.length===1?'session':'sessions'}</div></div><div class="modal-footer detail-footer"><div class="detail-tools"><button class="icon-button" data-action="edit-goal" data-id="${esc(g.id)}" aria-label="Edit goal">${icon('edit')}</button><button class="icon-button" data-action="archive-goal" data-id="${esc(g.id)}" aria-label="${g.status==='archived'?'Restore':'Archive'} goal">${icon('book')}</button><button class="icon-button destructive" data-action="delete-goal" data-id="${esc(g.id)}" aria-label="Delete goal">${icon('trash')}</button></div><button class="button secondary" data-action="focus-goal" data-id="${esc(g.id)}">${icon('play')} Focus</button><button class="button primary" data-action="complete-goal" data-id="${esc(g.id)}">${icon('check')} ${g.status==='completed'?'Reopen goal':'Mark complete'}</button></div>`;}
+
+function confirmation(title,body,choices=[['confirm','Continue','primary'],['cancel','Cancel','ghost']]){return new Promise(resolve=>{const dialog=$('#confirm-modal');dialog.innerHTML=`<div class="modal-header"><h2 id="confirm-title">${esc(title)}</h2><button class="icon-button" data-choice="cancel" aria-label="Close confirmation">${icon('close')}</button></div><div class="modal-body"><p>${esc(body)}</p></div><div class="modal-footer">${choices.map(([v,l,c])=>`<button class="button ${c}" data-choice="${v}">${esc(l)}</button>`).join('')}</div>`;const onClick=e=>{const b=e.target.closest('[data-choice]');if(b){dialog.returnValue=b.dataset.choice;dialog.close(b.dataset.choice);}};dialog.addEventListener('click',onClick);dialog.addEventListener('close',()=>{dialog.removeEventListener('click',onClick);resolve(dialog.returnValue||'cancel');},{once:true});dialog.returnValue='cancel';dialog.showModal();});}
+function snapshotUndo(message,operation){const snapshot=JSON.stringify(state);operation();save();render();toast(message,'Undo',()=>{state=JSON.parse(snapshot);save();render();if($('#detail-modal').open)renderDetail();});}
+function saveNotes(silent=false){const g=goalById(detailId),field=$('#goal-notes');if(g&&field&&g.notes!==field.value){g.notes=field.value;touch(g);const ok=save();if($('#notes-status'))$('#notes-status').textContent=ok?'SAVED':'NOT SAVED';if(!silent)toast(ok?'Notes saved.':'Export a backup to keep these notes.');}else if(!silent)toast('Notes are up to date.');}
+
+function remaining(){const t=state.timer;return Math.max(0,t.remainingSeconds-(t.startedAt?Math.floor((Date.now()-t.startedAt)/1000):0));}
+function elapsed(){return state.timer.totalSeconds-remaining();}
+function updateTimerUI(){const t=state.timer,r=remaining(),text=`${String(Math.floor(r/60)).padStart(2,'0')}:${String(r%60).padStart(2,'0')}`;if($('.timer-display'))$('.timer-display').textContent=text;document.title=t.startedAt?`${text} · Focus — Still`:'Still — Your learning space';if($('.timer-save'))$('.timer-save').disabled=elapsed()<1;}
+async function focusGoal(id){if(!goalById(id))return;if((state.timer.startedAt||elapsed()>0)&&state.timer.goalId!==id){const choice=await confirmation('A session is already in progress.','Save your current focus time before switching to another goal?',[['save','Save & switch','primary'],['discard','Discard & switch','secondary'],['cancel','Keep focusing','ghost']]);if(choice==='cancel')return;if(choice==='save')saveFocus(true);else state.timer=emptyTimer();}saveNotes(true);$('#detail-modal').close();state.timer.goalId=id;if(!state.timer.startedAt)state.timer.startedAt=Date.now();const g=goalById(id);if(g.status==='planned'){g.status='in-progress';touch(g);}save();setView('overview');$('#focus-panel')?.scrollIntoView({behavior:'smooth',block:'center'});}
+function saveFocus(quiet=false){if(state.sessions.length>=10000){state.timer.remainingSeconds=remaining();state.timer.startedAt=null;toast('Your session history is full. Export a backup before clearing older data.');save();return;}const seconds=elapsed();if(seconds<1){if(!quiet)toast('Start a session first. Even a little focus counts.');return;}const session={id:uid(),goalId:goalById(state.timer.goalId)?state.timer.goalId:'',minutes:Math.max(0.1,Math.round(seconds/6)/10),date:new Date().toISOString()};state.sessions.push(session);const g=goalById(session.goalId);if(g?.status==='planned'){g.status='in-progress';touch(g);}state.timer=emptyTimer(state.timer.totalSeconds/60,state.timer.goalId);save();render();if(!quiet)toast(`${minutesText(session.minutes)} of focus, saved. A little further than before.`);}
+function download(content,name){const blob=new Blob([content],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function exportBackup(){download(JSON.stringify({...state,timer:null},null,2),`still-backup-${dateKey()}.json`);toast('Backup downloaded. Keep it somewhere safe.');}
+
+document.addEventListener('click',async e=>{
+  const b=e.target.closest('button,a');if(!b)return;
+  if(b.dataset.view){setView(b.dataset.view);return;}
+  if(b.dataset.close){if(b.dataset.close==='detail-modal')saveNotes(true);$('#'+b.dataset.close).close();return;}
+  if(b.dataset.filter){filter=b.dataset.filter;render();return;}
+  if(b.dataset.date&&!b.dataset.action){selectedDate=b.dataset.date;render();return;}
+  if(b.dataset.month){const d=new Date(calendarMonth+'-01T12:00:00');d.setMonth(d.getMonth()+Number(b.dataset.month));calendarMonth=dateKey(d).slice(0,7);render();return;}
+  if(b.dataset.duration){if(elapsed()>0){const c=await confirmation('Change your focus length?','This will reset the current timer without saving it. Save the session first if you want to keep the time.');if(c!=='confirm')return;}state.timer=emptyTimer(Number(b.dataset.duration),state.timer.goalId);save();render();return;}
+  const action=b.dataset.action,id=b.dataset.id,g=goalById(id||detailId);if(!action)return;
+  if(action==='new-goal')openGoalForm();
+  if(action==='new-on-date')openGoalForm(null,b.dataset.date);
+  if(action==='open-goal')openDetail(id);
+  if(action==='edit-goal'){saveNotes(true);openGoalForm(id);}
+  if(action==='save-notes')saveNotes();
+  if(action==='calendar-today'){selectedDate=dateKey();calendarMonth=selectedDate.slice(0,7);render();}
+  if(action==='focus-goal')await focusGoal(id);
+  if(action==='complete-goal'&&g){saveNotes(true);const prev=g.status;snapshotUndo(prev==='completed'?'Goal reopened.':'A new thing learned. Well done.',()=>{g.status=prev==='completed'?'in-progress':'completed';touch(g);});renderDetail();}
+  if(action==='archive-goal'&&g){saveNotes(true);$('#detail-modal').close();snapshotUndo(g.status==='archived'?'Goal restored.':'Goal moved to your archive.',()=>{g.status=g.status==='archived'?'planned':'archived';touch(g);});}
+  if(action==='delete-goal'&&g){saveNotes(true);const c=await confirmation('Let this goal go?',`“${g.title}” and its notes will be removed. Its saved focus time will stay in your history.`,[['confirm','Delete goal','danger'],['cancel','Keep it','ghost']]);if(c==='confirm'){$('#detail-modal').close();snapshotUndo('Goal deleted.',()=>{state.goals=state.goals.filter(x=>x.id!==g.id);state.sessions=state.sessions.map(s=>s.goalId===g.id?{...s,goalId:''}:s);if(state.timer.goalId===g.id)state.timer.goalId='';});}}
+  if(['step-up','step-down','delete-step'].includes(action)&&g){saveNotes(true);const idx=g.steps.findIndex(s=>s.id===b.dataset.stepId);if(idx<0)return;if(action==='delete-step'){const removed=g.steps.splice(idx,1)[0];toast('Step removed.','Undo',()=>{g.steps.splice(idx,0,removed);touch(g);save();render();renderDetail();});}else{const to=idx+(action==='step-up'?-1:1);if(to<0||to>=g.steps.length)return;[g.steps[idx],g.steps[to]]=[g.steps[to],g.steps[idx]];}touch(g);save();render();renderDetail();}
+  if(action==='delete-resource'&&g){saveNotes(true);g.resources=g.resources.filter(r=>r.id!==b.dataset.resourceId);touch(g);save();renderDetail();}
+  if(action==='timer-toggle'){const t=state.timer;if(t.startedAt){t.remainingSeconds=remaining();t.startedAt=null;}else t.startedAt=Date.now();save();render();}
+  if(action==='timer-save')saveFocus();
+  if(action==='timer-reset'){if(elapsed()>0&&(await confirmation('Reset this session?','Unsaved focus time will be discarded. You can finish and save the session instead.'))!=='confirm')return;state.timer=emptyTimer(state.timer.totalSeconds/60,state.timer.goalId);save();render();}
+  if(action==='export')exportBackup();
+  if(action==='import')$('#import-file').click();
+  if(action==='retry-sync'){if(remoteConflict){toast('Choose which version to keep first.');}else{storageWarning='';await pushCloud();render();}}
+  if(action==='use-cloud'&&remoteConflict){const choice=await confirmation('Use the latest synced copy?','Your current device’s copy will be downloaded as a backup before it is replaced.');if(choice==='confirm'){exportBackup();state=remoteConflict.state?restoreState(remoteConflict.state):initialData();revision=remoteConflict.revision;dirty=false;remoteConflict=null;storageWarning='';changeGeneration++;cacheDraft();render();toast('Latest synced version restored.');}}
+  if(action==='use-local'&&remoteConflict){const choice=await confirmation('Sync this device’s copy?','This will replace the synced workspace with the goals and progress currently on this device. The other version will be downloaded first.');if(choice==='confirm'){if(remoteConflict.state)download(JSON.stringify({...remoteConflict.state,timer:null},null,2),'still-cloud-copy-'+dateKey()+'.json');revision=remoteConflict.revision;remoteConflict=null;storageWarning='';dirty=true;await pushCloud();render();}}
+  if(action==='recovery'){download(localStorage.getItem(STORAGE_KEY)||'{}',`still-recovery-${dateKey()}.json`);}
+  if(action==='reset-corrupt'){const c=await confirmation('Reset unreadable storage?','Download the recovery copy first. This clears the unreadable saved data and enables saving the current workspace.',[['confirm','Reset storage','danger'],['cancel','Cancel','ghost']]);if(c==='confirm'){corruptStorage=false;storageWarning='';save();render();}}
+  if(action==='clear-demo'||action==='clear-all'){const c=await confirmation(action==='clear-demo'?'Make this space yours?':'Start with a clean page?',action==='clear-demo'?'The example goals and focus sessions will be cleared. Your preferences will stay. Add your first real goal next.':'All goals, notes, resources, and focus sessions will be cleared. Export a backup first if you want to keep them.',[['confirm',action==='clear-demo'?'Start my workspace':'Clear workspace','primary'],['cancel','Keep it for now','ghost']]);if(c==='confirm'){snapshotUndo('A fresh page. Make it yours.',()=>{state={...state,demo:false,goals:[],sessions:[],timer:emptyTimer()};});setView('overview');}}
+});
+document.addEventListener('submit',e=>{
+  const form=e.target;if(!['goal-form','step-form','resource-form','settings-form'].includes(form.id))return;e.preventDefault();const f=Object.fromEntries(new FormData(form));
+  if(form.id==='goal-form'){if(!form.dataset.id&&state.goals.length>=500){toast('Your workspace has reached 500 goals. Export a backup and remove old goals first.');return;}const title=f.title.trim(),cat=f.category.trim();if(!title||!cat){toast('Give your goal a title and a category.');return;}const now=new Date().toISOString(),existing=goalById(form.dataset.id);const g={...(existing||{id:uid(),steps:[],resources:[],notes:'',createdAt:now}),title,description:f.description.trim(),category:cat,priority:f.priority,deadline:f.deadline,plannedDate:f.plannedDate,status:f.status,updatedAt:now};if(!existing)g.steps=(f.steps||'').split('\n').map(s=>s.trim()).filter(Boolean).slice(0,100).map(title=>({id:uid(),title:title.slice(0,300),done:false}));if(existing)state.goals=state.goals.map(x=>x.id===g.id?g:x);else state.goals.push(g);save();$('#goal-modal').close();render();toast(existing?'Goal updated.':'A new beginning. Your goal is ready.');openDetail(g.id);}
+  if(form.id==='step-form'){const g=goalById(detailId),title=f.step.trim();if(!g||!title)return;if(g.steps.length>=500){toast('This goal already has 500 steps. Consider splitting it into smaller goals.');return;}saveNotes(true);g.steps.push({id:uid(),title,done:false});if(g.status==='completed')g.status='in-progress';touch(g);save();render();renderDetail();$('#step-form input').focus();}
+  if(form.id==='resource-form'){const g=goalById(detailId),url=safeUrl(f.url);if(!g||!url){toast('Use a complete link beginning with https:// or http://.');return;}if(g.resources.length>=100){toast('This goal has reached its 100-resource limit.');return;}saveNotes(true);g.resources.push({id:uid(),title:f.label.trim()||new URL(url).hostname,url});touch(g);save();renderDetail();}
+  if(form.id==='settings-form'){state.settings={...state.settings,name:f.name.trim(),weeklyGoal:Number(f.weeklyGoal),theme:f.theme};save();render();toast('Your space, your pace. Preferences saved.');}
+});
+document.addEventListener('change',e=>{const t=e.target;
+  if(t.id==='category-filter'){category=t.value;refreshResults();}
+  if(t.id==='goal-sort'){sort=t.value;refreshResults();}
+  if(t.id==='timer-goal'){state.timer.goalId=t.value;save();}
+  if(t.dataset.step){const g=goalById(detailId),s=g?.steps.find(s=>s.id===t.dataset.step);if(!s)return;saveNotes(true);s.done=t.checked;if(!s.done&&g.status==='completed')g.status='in-progress';else if(s.done&&g.status==='planned')g.status='in-progress';touch(g);save();render();renderDetail();if(g.steps.length&&g.steps.every(x=>x.done)&&g.status!=='completed')toast('Every step is checked. Mark the goal complete when you’re ready.');}
+});
+document.addEventListener('input',e=>{if(e.target.id==='goal-search'){query=e.target.value;refreshResults();}if(e.target.id==='goal-notes')$('#notes-status').textContent='UNSAVED NOTES';});
+$('#theme-button').onclick=()=>{state.settings.theme=state.settings.theme==='dark'?'light':'dark';save();applyTheme();if(view==='settings')render();};
+$('#import-file').onchange=async e=>{const file=e.target.files[0];e.target.value='';if(!file)return;if(file.size>1800*1024){toast('This backup is too large. Choose a Still JSON backup under 1.8 MB.');return;}let incoming;try{incoming=validateImport(JSON.parse(await file.text()));}catch(err){toast('Could not import this backup: '+err.message);return;}const choice=await confirmation('Bring in this backup?',`It contains ${incoming.goals.length} goals and ${incoming.sessions.length} focus sessions. Replace this workspace, or add its goals and sessions to what’s already here.`,[['merge','Add to workspace','primary'],['replace','Replace workspace','secondary'],['cancel','Cancel','ghost']]);if(choice==='cancel')return;const old=JSON.stringify(state);if(choice==='replace'){state=incoming;state.timer=emptyTimer();}else{if(state.goals.length+incoming.goals.length>500||state.sessions.length+incoming.sessions.length>10000){toast('This import would exceed the workspace limit. Use Replace or a smaller backup.');return;}const mapping=new Map(incoming.goals.map(g=>[g.id,uid()]));state.goals.push(...incoming.goals.map(g=>({...g,id:mapping.get(g.id),steps:g.steps.map(s=>({...s,id:uid()})),resources:g.resources.map(r=>({...r,id:uid()}))})));state.sessions.push(...incoming.sessions.map(s=>({...s,id:uid(),goalId:mapping.get(s.goalId)||''})));state.demo=false;}save();render();toast('Backup imported. Everything has a place.','Undo',()=>{state=JSON.parse(old);save();render();});};
+$$('dialog').forEach(d=>{d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom){if(d.id==='detail-modal')saveNotes(true);d.close();}}});if(d.id==='detail-modal')d.addEventListener('cancel',()=>saveNotes(true));});
+window.addEventListener('hashchange',()=>{const next=location.hash.slice(1);if(['overview','learning','calendar','insights','settings'].includes(next)&&next!==view){view=next;render();}});
+window.addEventListener('storage',e=>{if(e.key===cacheKey)refreshCloud();});
+window.addEventListener('online',()=>{pushCloud();refreshCloud();});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshCloud();});
+setInterval(refreshCloud,20000);
+window.addEventListener('beforeunload',e=>{if($('#detail-modal').open)saveNotes(true);if(dirty){cacheDraft();e.preventDefault();e.returnValue='';}});
+setInterval(()=>{if(cloudReady&&state.timer.startedAt&&remaining()===0){saveFocus();toast('Session complete. Take a breath and a little break.');}else updateTimerUI();},1000);
+render();bootCloud();
+</script>
+</body>
+</html>
